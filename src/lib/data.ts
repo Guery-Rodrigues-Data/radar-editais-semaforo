@@ -36,7 +36,8 @@ export const tagCategories = tagsRaw as TagCategory[];
 export const backlog = backlogRaw as BacklogRow[];
 
 export function getEdital(slug: string): Edital | undefined {
-  return editais.find((e) => e.slug === slug || e.slug === `!${slug}`);
+  const clean = slug.replace(/^!/, "");
+  return editais.find((e) => e.slug === clean);
 }
 
 export function editaisByTag(tagId: string): Edital[] {
@@ -78,14 +79,34 @@ export function maturidadeSplit() {
 }
 
 export function editaisPorUf() {
-  const counts = new Map<string, number>();
+  const grouped = new Map<string, string[]>();
   for (const e of editais) {
     if (!e.uf) continue;
-    counts.set(e.uf, (counts.get(e.uf) ?? 0) + 1);
+    grouped.set(e.uf, [...(grouped.get(e.uf) ?? []), e.slug]);
   }
-  return Array.from(counts.entries())
-    .map(([uf, total]) => ({ uf, total }))
+  return Array.from(grouped.entries())
+    .map(([uf, slugs]) => ({ uf, total: slugs.length, editalSlugs: slugs }))
     .sort((a, b) => b.total - a.total);
+}
+
+export function maturidadePorUf() {
+  const grouped = new Map<
+    string,
+    { madura: number; nova: number; total: number }
+  >();
+  for (const e of editais) {
+    if (!e.uf) continue;
+    const entry = grouped.get(e.uf) ?? { madura: 0, nova: 0, total: 0 };
+    entry.total += 1;
+    if (e.tags.includes("central-maturidade/madura")) entry.madura += 1;
+    if (e.tags.includes("central-maturidade/nova")) entry.nova += 1;
+    grouped.set(e.uf, entry);
+  }
+  return Array.from(grouped.entries()).map(([uf, v]) => ({
+    uf,
+    ...v,
+    pctMadura: v.total > 0 ? Math.round((v.madura / v.total) * 100) : 0,
+  }));
 }
 
 export function stats() {

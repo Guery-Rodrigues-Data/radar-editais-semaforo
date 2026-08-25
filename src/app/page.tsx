@@ -4,12 +4,45 @@ import { StatCard } from "@/components/StatCard";
 import { BarPanel } from "@/components/BarPanel";
 import { DonutChart } from "@/components/DonutChart";
 import { AchadoChip } from "@/components/AchadoChip";
+import { ProtocoloEMapa } from "@/components/ProtocoloEMapa";
 import { achados, curatedStats, protocoloPlenoChart } from "@/data/achados";
-import { editais, backlog, maturidadeSplit, editaisPorUf } from "@/lib/data";
+import {
+  editais,
+  backlog,
+  maturidadeSplit,
+  editaisPorUf,
+  maturidadePorUf,
+} from "@/lib/data";
 
 export default function Home() {
   const maturidade = maturidadeSplit();
-  const porUf = editaisPorUf().slice(0, 8);
+  const todosPorUf = editaisPorUf();
+  const porUf = todosPorUf.slice(0, 8);
+  const editalSlugsByUf = Object.fromEntries(
+    todosPorUf.map((d) => [d.uf, d.editalSlugs])
+  );
+  const maturidadeUf = maturidadePorUf();
+  const mapLayers = [
+    {
+      id: "total",
+      label: "Editais por estado",
+      values: Object.fromEntries(todosPorUf.map((d) => [d.uf, d.total])),
+      max: Math.max(...todosPorUf.map((d) => d.total)),
+      colorFrom: "#fdeceb",
+      colorTo: "#e0342b",
+    },
+    {
+      id: "maturidade",
+      label: "% central madura",
+      unit: "%",
+      values: Object.fromEntries(
+        maturidadeUf.map((d) => [d.uf, d.pctMadura])
+      ),
+      max: 100,
+      colorFrom: "#e7f7ee",
+      colorTo: "#1f9d5c",
+    },
+  ];
   const topBacklog = [...backlog]
     .sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
     .slice(0, 6)
@@ -41,14 +74,14 @@ export default function Home() {
 
           {/* KPIs */}
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard value={String(editais.length)} label="editais analisados" />
+            <StatCard
+              value={`${editais.length}/${curatedStats.totalVault}`}
+              label="editais lidos a fundo (do vault todo)"
+              gauge={{ value: editais.length, total: curatedStats.totalVault }}
+            />
             <StatCard
               value={`${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`}
-              label="exigem protocolo aberto pleno"
-              gauge={{
-                value: curatedStats.protocoloAbertoPleno,
-                total: curatedStats.protocoloAbertoTotal,
-              }}
+              label="dos lidos exigem protocolo aberto pleno"
             />
             <StatCard
               value="UTMC2"
@@ -61,15 +94,17 @@ export default function Home() {
             />
           </div>
 
-          {/* Charts */}
-          <div className="mt-4 grid gap-4 lg:grid-cols-3">
-            <BarPanel
-              title="Protocolo aberto pleno, por família"
-              data={protocoloPlenoChart.map((d) => ({
-                label: d.protocolo,
-                value: d.casos,
-              }))}
+          {/* Mapa + protocolo */}
+          <div className="mt-4">
+            <ProtocoloEMapa
+              protocolos={protocoloPlenoChart}
+              mapLayers={mapLayers}
+              editalSlugsByUf={editalSlugsByUf}
             />
+          </div>
+
+          {/* Charts */}
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
             <DonutChart
               title="Maturidade da central"
               centerValue={String(editais.length)}
@@ -87,7 +122,11 @@ export default function Home() {
             />
             <BarPanel
               title="Editais por estado (top 8)"
-              data={porUf.map((d) => ({ label: d.uf, value: d.total }))}
+              data={porUf.map((d) => ({
+                label: d.uf,
+                value: d.total,
+                editalSlugs: d.editalSlugs,
+              }))}
             />
           </div>
 

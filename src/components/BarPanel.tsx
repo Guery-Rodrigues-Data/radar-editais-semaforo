@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
 import {
   Bar,
   BarChart,
@@ -10,8 +12,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { getEdital } from "@/lib/data";
 
-type Datum = { label: string; value: number; color?: string };
+type Datum = {
+  label: string;
+  value: number;
+  color?: string;
+  editalSlugs?: string[];
+};
 
 const DEFAULT_COLOR = "#e0342b"; // signal-red — cor de acento padrão do gráfico
 
@@ -28,12 +36,20 @@ export function BarPanel({
   suffix?: string;
   labelWidth?: number;
 }) {
+  const [open, setOpen] = useState<string | null>(null);
   const rowHeight = 38;
   const chartHeight = height ?? Math.max(data.length * rowHeight + 24, 120);
+  const clickable = data.some((d) => d.editalSlugs?.length);
+  const openDatum = data.find((d) => d.label === open);
 
   return (
     <div className="panel p-6">
-      <h3 className="font-display text-sm font-semibold text-ink">{title}</h3>
+      <div className="flex items-baseline justify-between">
+        <h3 className="font-display text-sm font-semibold text-ink">{title}</h3>
+        {clickable && (
+          <span className="text-[11px] text-ink-faint">clique numa barra</span>
+        )}
+      </div>
       <div style={{ width: "100%", height: chartHeight }} className="mt-4">
         <ResponsiveContainer>
           <BarChart
@@ -41,6 +57,13 @@ export function BarPanel({
             layout="vertical"
             margin={{ top: 0, right: 32, bottom: 0, left: 0 }}
             barCategoryGap={16}
+            onClick={(state) => {
+              const label = state?.activeLabel;
+              if (typeof label !== "string") return;
+              const datum = data.find((d) => d.label === label);
+              if (!datum?.editalSlugs?.length) return;
+              setOpen((prev) => (prev === label ? null : label));
+            }}
           >
             <XAxis type="number" hide domain={[0, "dataMax"]} />
             <YAxis
@@ -65,7 +88,12 @@ export function BarPanel({
               itemStyle={{ color: "white" }}
               formatter={(value) => [`${value}${suffix}`, ""]}
             />
-            <Bar dataKey="value" radius={10} maxBarSize={22}>
+            <Bar
+              dataKey="value"
+              radius={10}
+              maxBarSize={22}
+              cursor={clickable ? "pointer" : undefined}
+            >
               {data.map((d, i) => (
                 <Cell key={i} fill={d.color ?? DEFAULT_COLOR} />
               ))}
@@ -84,6 +112,30 @@ export function BarPanel({
           </BarChart>
         </ResponsiveContainer>
       </div>
+
+      {openDatum?.editalSlugs && (
+        <div className="mt-2 rounded-2xl bg-surface-sunken p-4">
+          <p className="text-xs font-semibold text-ink-faint">
+            Editais — {openDatum.label}
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {openDatum.editalSlugs.map((slug) => {
+              const edital = getEdital(slug);
+              if (!edital) return null;
+              return (
+                <li key={slug}>
+                  <Link
+                    href={`/editais/${encodeURIComponent(edital.slug)}`}
+                    className="text-sm font-medium text-ink hover:underline"
+                  >
+                    {edital.cidade} · {edital.uf}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

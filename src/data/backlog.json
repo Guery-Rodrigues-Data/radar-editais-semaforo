@@ -120,10 +120,10 @@
   },
   {
     "requisito": "Integração com fonte de dados externa (Waze/Google Maps)",
-    "apareceEm": "5/24 (Farroupilha — básica; Indaiatuba, Santo André, Alfenas — API REST completa; Criciúma — só mapa de fundo)",
-    "count": 5,
-    "total": 24,
-    "observacao": "Santo André e Alfenas replicam quase exatamente o pacote de Indaiatuba — ver \"Quem pede bem\""
+    "apareceEm": "6/35 (Farroupilha — básica; Indaiatuba, Santo André, Alfenas, **São Bernardo do Campo** — API REST completa; Criciúma — só mapa de fundo)",
+    "count": 6,
+    "total": 35,
+    "observacao": "Santo André, Alfenas e São Bernardo replicam quase exatamente o pacote de Indaiatuba — ver \"Quem pede bem\""
   },
   {
     "requisito": "Leitura de placa / cerco eletrônico (LPR)",
@@ -162,10 +162,10 @@
   },
   {
     "requisito": "Plataforma de dados analíticos com ML/BI e consulta em linguagem natural via LLM",
-    "apareceEm": "3/24 (Indaiatuba, Santo André, Alfenas)",
-    "count": 3,
-    "total": 24,
-    "observacao": "Tag confirmada. Indaiatuba segue mais completo (privacidade diferencial + SSO corporativo)"
+    "apareceEm": "4/35 (Indaiatuba, Santo André, Alfenas, **São Bernardo do Campo**)",
+    "count": 4,
+    "total": 35,
+    "observacao": "Tag confirmada, já padrão de produto consolidado (não mais \"emergente\"). São Bernardo é o mais detalhado; Indaiatuba segue único com privacidade diferencial + SSO corporativo"
   },
   {
     "requisito": "Indicadores de disponibilidade MTBF/MTTR por controlador",

@@ -71,6 +71,7 @@ export const achados: Achado[] = [
 // Números verificados manualmente (ver nota de rodapé no lib/data.ts sobre
 // a diferença entre "pleno" e apenas citado/parcial).
 export const curatedStats = {
+  totalVault: 121, // total de editais/documentos catalogados em Editais/00 - Indice.md
   protocoloAbertoPleno: 8,
   protocoloAbertoTotal: 34,
   utmc2Pleno: 4,
@@ -79,8 +80,23 @@ export const curatedStats = {
 
 // Contagem de protocolo "pleno" por família — conferida manualmente na nota
 // Interoperabilidade e Protocolos Abertos (soma bate com curatedStats.protocoloAbertoPleno).
+// editalSlugs aqui é só quem é PLENO daquele protocolo — não confundir com a
+// tag `protocolo/*` (que também marca capacidade/parcial, ver editaisByTag).
 export const protocoloPlenoChart = [
-  { protocolo: "UTMC2", casos: 4 },
-  { protocolo: "UNE 135401-4", casos: 3 },
-  { protocolo: "NTCIP", casos: 1 },
+  {
+    protocolo: "UTMC2",
+    casos: 4,
+    editalSlugs: [
+      "AN_PR_Foz-do-Iguacu",
+      "AN_CE_Fortaleza",
+      "AN_SP_Cubatao",
+      "!AN_SP_Detran",
+    ],
+  },
+  {
+    protocolo: "UNE 135401-4",
+    casos: 3,
+    editalSlugs: ["AN_RS_Farroupilha", "AN_SP_Ribeirao-Preto", "AN_PR_Paranagua"],
+  },
+  { protocolo: "NTCIP", casos: 1, editalSlugs: ["AN_MT_Cuiaba"] },
 ];
