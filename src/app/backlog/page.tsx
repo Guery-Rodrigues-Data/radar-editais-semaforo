@@ -12,7 +12,7 @@ export default function BacklogPage() {
             Candidatos a backlog — o que os editais mais pedem
           </h1>
 
-          <div className="mt-6 rounded-md border border-border bg-surface p-5">
+          <div className="panel mt-6 p-6">
             <BacklogChart rows={backlog} />
           </div>
         </div>

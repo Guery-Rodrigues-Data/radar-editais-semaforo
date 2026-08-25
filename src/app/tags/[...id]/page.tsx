@@ -20,7 +20,7 @@ export default async function TagPage({
       <SiteHeader />
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-6 py-12">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink-faint">
+          <p className="text-xs font-semibold text-signal-red">
             {found.category.label}
           </p>
           <h1 className="mt-2 font-display text-2xl font-semibold text-ink">
@@ -31,7 +31,7 @@ export default async function TagPage({
           </p>
 
           <div className="mt-10">
-            <h2 className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
+            <h2 className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
               {editaisRelacionados.length} editais com essa tag
             </h2>
             <ul className="mt-4 space-y-3">
@@ -39,7 +39,7 @@ export default async function TagPage({
                 <li key={edital.slug}>
                   <Link
                     href={`/editais/${encodeURIComponent(edital.slug)}`}
-                    className="block rounded-lg border border-border bg-surface p-4 transition-colors hover:border-ink-faint"
+                    className="panel block p-4 transition-transform hover:-translate-y-0.5"
                   >
                     <span className="font-medium text-ink">
                       {edital.cidade} · {edital.uf}

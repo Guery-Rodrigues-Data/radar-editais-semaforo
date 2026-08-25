@@ -15,15 +15,15 @@ export function AchadoChip({ achado }: { achado: Achado }) {
     >
       <span
         aria-hidden
-        className={`h-2 w-2 shrink-0 rounded-full ${
+        className={`h-2.5 w-2.5 shrink-0 rounded-full ${
           SIGNAL_COLOR[achado.signal ?? ""] ?? "bg-ink-faint"
         }`}
       />
       <span className="flex-1 font-display text-sm font-medium text-ink group-hover:underline">
         {achado.title}
       </span>
-      <span className="shrink-0 font-mono text-xs text-ink-faint">
-        {achado.editalSlugs.length}×
+      <span className="shrink-0 rounded-full bg-surface-sunken px-2.5 py-1 text-xs font-medium text-ink-faint">
+        {achado.editalSlugs.length} editais
       </span>
     </Link>
   );

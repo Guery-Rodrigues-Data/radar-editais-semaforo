@@ -28,19 +28,19 @@ export function BarPanel({
   suffix?: string;
   labelWidth?: number;
 }) {
-  const rowHeight = 34;
+  const rowHeight = 38;
   const chartHeight = height ?? Math.max(data.length * rowHeight + 24, 120);
 
   return (
-    <div className="rounded-md border border-border bg-surface p-5">
+    <div className="panel p-6">
       <h3 className="font-display text-sm font-semibold text-ink">{title}</h3>
-      <div style={{ width: "100%", height: chartHeight }} className="mt-3">
+      <div style={{ width: "100%", height: chartHeight }} className="mt-4">
         <ResponsiveContainer>
           <BarChart
             data={data}
             layout="vertical"
-            margin={{ top: 0, right: 28, bottom: 0, left: 0 }}
-            barCategoryGap={10}
+            margin={{ top: 0, right: 32, bottom: 0, left: 0 }}
+            barCategoryGap={16}
           >
             <XAxis type="number" hide domain={[0, "dataMax"]} />
             <YAxis
@@ -49,22 +49,23 @@ export function BarPanel({
               width={labelWidth}
               tickLine={false}
               axisLine={false}
-              tick={{ fill: "var(--ink-muted)", fontSize: 12 }}
+              tick={{ fill: "var(--ink-muted)", fontSize: 13 }}
             />
             <Tooltip
-              cursor={{ fill: "var(--surface-sunken)" }}
+              cursor={{ fill: "var(--surface-sunken)", radius: 12 }}
               contentStyle={{
                 background: "var(--ink)",
                 border: "none",
-                borderRadius: 6,
-                fontSize: 12,
-                fontFamily: "var(--font-mono)",
+                borderRadius: 12,
+                fontSize: 13,
+                fontFamily: "var(--font-body)",
+                padding: "8px 12px",
               }}
               labelStyle={{ color: "white" }}
               itemStyle={{ color: "white" }}
               formatter={(value) => [`${value}${suffix}`, ""]}
             />
-            <Bar dataKey="value" radius={[0, 3, 3, 0]} maxBarSize={18}>
+            <Bar dataKey="value" radius={10} maxBarSize={22}>
               {data.map((d, i) => (
                 <Cell key={i} fill={d.color ?? DEFAULT_COLOR} />
               ))}
@@ -74,8 +75,8 @@ export function BarPanel({
                 formatter={(value) => `${value}${suffix}`}
                 style={{
                   fill: "var(--ink)",
-                  fontSize: 12,
-                  fontFamily: "var(--font-mono)",
+                  fontSize: 13,
+                  fontFamily: "var(--font-display)",
                   fontWeight: 600,
                 }}
               />

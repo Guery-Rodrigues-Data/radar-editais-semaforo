@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
-import { StatStrip } from "@/components/StatStrip";
+import { StatCard } from "@/components/StatCard";
 import { BarPanel } from "@/components/BarPanel";
 import { AchadoChip } from "@/components/AchadoChip";
 import { achados, curatedStats, protocoloPlenoChart } from "@/data/achados";
@@ -24,12 +24,12 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="flex-1">
-        <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="mx-auto max-w-6xl px-6 py-6">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h1 className="font-display text-2xl font-semibold text-ink">
               Radar de Editais — Sinalização Semafórica
             </h1>
-            <span className="font-mono text-xs text-ink-faint">
+            <span className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-ink-faint shadow-sm">
               versão prévia · 25/08/2026
             </span>
           </div>
@@ -39,28 +39,25 @@ export default function Home() {
           </p>
 
           {/* KPIs */}
-          <div className="mt-8">
-            <StatStrip
-              stats={[
-                { value: String(editais.length), label: "editais analisados" },
-                {
-                  value: `${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`,
-                  label: "exigem protocolo aberto pleno",
-                },
-                {
-                  value: "UTMC2",
-                  label: `protocolo líder (${curatedStats.utmc2Pleno} casos)`,
-                },
-                {
-                  value: String(curatedStats.fornecedoresIdentificados),
-                  label: "fornecedores identificados por nome",
-                },
-              ]}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard value={String(editais.length)} label="editais analisados" />
+            <StatCard
+              value={`${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`}
+              label="exigem protocolo aberto pleno"
+            />
+            <StatCard
+              value="UTMC2"
+              label="protocolo líder"
+              pill={`${curatedStats.utmc2Pleno} casos`}
+            />
+            <StatCard
+              value={String(curatedStats.fornecedoresIdentificados)}
+              label="fornecedores identificados por nome"
             />
           </div>
 
           {/* Charts */}
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <div className="mt-4 grid gap-4 lg:grid-cols-3">
             <BarPanel
               title="Protocolo aberto pleno, por família"
               data={protocoloPlenoChart.map((d) => ({
@@ -97,15 +94,15 @@ export default function Home() {
           </div>
 
           {/* Achados + links, lado a lado */}
-          <div className="mt-8 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-            <div className="rounded-md border border-border bg-surface p-5">
+          <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+            <div className="panel p-6">
               <div className="flex items-baseline justify-between">
                 <h2 className="font-display text-sm font-semibold text-ink">
                   Achados — só aparecem cruzando vários editais
                 </h2>
                 <Link
                   href="/achados"
-                  className="font-mono text-xs text-ink-faint hover:text-ink"
+                  className="text-xs font-medium text-ink-faint hover:text-ink"
                 >
                   ver todos
                 </Link>
@@ -120,9 +117,9 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <Link
                 href="/backlog"
-                className="flex-1 rounded-md border border-border bg-surface p-5 transition-colors hover:border-ink-faint"
+                className="panel flex-1 p-6 transition-transform hover:-translate-y-0.5"
               >
-                <span className="font-mono text-2xl font-semibold text-ink">
+                <span className="font-display text-2xl font-semibold text-ink">
                   {backlog.length}
                 </span>
                 <p className="mt-1 text-sm text-ink-muted">
@@ -131,9 +128,9 @@ export default function Home() {
               </Link>
               <Link
                 href="/editais"
-                className="flex-1 rounded-md border border-border bg-surface p-5 transition-colors hover:border-ink-faint"
+                className="panel flex-1 p-6 transition-transform hover:-translate-y-0.5"
               >
-                <span className="font-mono text-2xl font-semibold text-ink">
+                <span className="font-display text-2xl font-semibold text-ink">
                   {editais.length}
                 </span>
                 <p className="mt-1 text-sm text-ink-muted">
@@ -143,7 +140,7 @@ export default function Home() {
             </div>
           </div>
 
-          <p className="mt-10 max-w-2xl font-mono text-[11px] leading-relaxed text-ink-faint">
+          <p className="mt-8 max-w-2xl text-xs leading-relaxed text-ink-faint">
             Versão prévia (25/08/2026) — amostra em crescimento, {editais.length}
             {" "}de ~121 editais do vault. Leitura e cruzamento manual, ainda
             não é validação técnica profunda de cada cláusula.

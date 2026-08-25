@@ -30,7 +30,7 @@ export default async function AchadoPage({
         <div className="mx-auto max-w-3xl px-6 py-12">
           <Link
             href="/achados"
-            className="font-mono text-xs uppercase tracking-wide text-ink-faint hover:text-ink"
+            className="text-xs font-medium text-ink-faint hover:text-ink"
           >
             ← todos os achados
           </Link>
@@ -39,10 +39,10 @@ export default async function AchadoPage({
             {achado.signal && (
               <span
                 aria-hidden
-                className={`h-2 w-2 rounded-full ${SIGNAL_COLOR[achado.signal]}`}
+                className={`h-2.5 w-2.5 rounded-full ${SIGNAL_COLOR[achado.signal]}`}
               />
             )}
-            <span className="font-mono text-xs uppercase tracking-wider text-ink-faint">
+            <span className="text-xs font-semibold text-signal-red">
               {achado.label}
             </span>
           </div>
@@ -55,7 +55,7 @@ export default async function AchadoPage({
           </p>
 
           <div className="mt-10">
-            <h2 className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
+            <h2 className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
               Editais que sustentam esse achado
             </h2>
             <ul className="mt-4 space-y-3">
@@ -63,7 +63,7 @@ export default async function AchadoPage({
                 <li key={edital.slug}>
                   <Link
                     href={`/editais/${encodeURIComponent(edital.slug)}`}
-                    className="block rounded-lg border border-border bg-surface p-4 transition-colors hover:border-ink-faint"
+                    className="panel block p-4 transition-transform hover:-translate-y-0.5"
                   >
                     <span className="font-medium text-ink">
                       {edital.cidade} · {edital.uf}

@@ -8,9 +8,7 @@ export default function AchadosPage() {
       <SiteHeader />
       <main className="flex-1">
         <div className="mx-auto max-w-6xl px-6 py-12">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink-faint">
-            Achados
-          </p>
+          <p className="text-xs font-semibold text-signal-red">Achados</p>
           <h1 className="mt-2 font-display text-3xl font-semibold text-ink">
             O que só aparece cruzando vários editais
           </h1>

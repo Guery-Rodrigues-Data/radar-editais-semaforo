@@ -8,9 +8,7 @@ export default function EditaisPage() {
       <SiteHeader />
       <main className="flex-1">
         <div className="mx-auto max-w-5xl px-6 py-12">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink-faint">
-            Base completa
-          </p>
+          <p className="text-xs font-semibold text-signal-red">Base completa</p>
           <h1 className="mt-2 font-display text-3xl font-semibold text-ink">
             {editais.length} editais explorados
           </h1>

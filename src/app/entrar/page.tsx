@@ -6,12 +6,12 @@ export default async function EntrarPage({
   const { next = "/", erro } = await searchParams;
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-6 bg-bg">
-      <div className="w-full max-w-sm">
+    <main className="flex min-h-screen items-center justify-center px-6">
+      <div className="panel w-full max-w-sm p-8">
         <div className="mb-8 flex items-center gap-3">
           <span
             aria-hidden
-            className="flex h-8 w-8 flex-col items-center justify-center gap-[3px] rounded-sm bg-ink p-1.5"
+            className="flex h-8 w-8 flex-col items-center justify-center gap-[3px] rounded-full bg-ink p-1.5"
           >
             <span className="h-1 w-1 rounded-full bg-signal-red" />
             <span className="h-1 w-1 rounded-full bg-signal-amber" />
@@ -35,7 +35,7 @@ export default async function EntrarPage({
           <div>
             <label
               htmlFor="password"
-              className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-faint"
+              className="mb-1.5 block text-xs font-medium text-ink-faint"
             >
               Senha
             </label>
@@ -45,7 +45,7 @@ export default async function EntrarPage({
               type="password"
               autoFocus
               required
-              className="w-full rounded-md border border-border-strong bg-surface px-3.5 py-2.5 font-mono text-sm text-ink outline-none transition-colors focus:border-ink focus-visible:ring-2 focus-visible:ring-ink/20"
+              className="w-full rounded-full border border-border-strong bg-surface px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-ink focus-visible:ring-2 focus-visible:ring-ink/20"
             />
           </div>
 
@@ -57,7 +57,7 @@ export default async function EntrarPage({
 
           <button
             type="submit"
-            className="w-full rounded-md bg-ink px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            className="w-full rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             Entrar
           </button>

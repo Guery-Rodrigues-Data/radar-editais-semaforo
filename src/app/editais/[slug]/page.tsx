@@ -27,17 +27,17 @@ export default async function EditalPage({
         <div className="mx-auto max-w-3xl px-6 py-12">
           <Link
             href="/editais"
-            className="font-mono text-xs uppercase tracking-wide text-ink-faint hover:text-ink"
+            className="text-xs font-medium text-ink-faint hover:text-ink"
           >
             ← todos os editais
           </Link>
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            <span className="font-mono text-xs text-ink-muted">
+            <span className="text-xs font-medium text-ink-muted">
               {edital.cidade} · {edital.uf}
             </span>
             {edital.pendingReview && (
-              <span className="rounded-full bg-signal-amber-tint px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-signal-amber">
+              <span className="rounded-full bg-signal-amber-tint px-2.5 py-1 text-[11px] font-semibold text-signal-amber">
                 pendente de revisão
               </span>
             )}
@@ -55,7 +55,7 @@ export default async function EditalPage({
                   <Link
                     key={tagId}
                     href={`/tags/${tagId}`}
-                    className="rounded-full border border-border-strong bg-surface-sunken px-2.5 py-1 font-mono text-[11px] text-ink-muted hover:border-ink-faint hover:text-ink"
+                    className="rounded-full bg-surface-sunken px-3 py-1 text-xs font-medium text-ink-muted hover:text-ink"
                     title={found ? plainText(found.tag.description) : undefined}
                   >
                     {tagId}
@@ -71,7 +71,7 @@ export default async function EditalPage({
               if (!value || typeof value !== "string") return null;
               return (
                 <div key={key}>
-                  <h2 className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
+                  <h2 className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
                     {label}
                   </h2>
                   <div className="prose-sm mt-2 whitespace-pre-line text-sm leading-relaxed text-ink">
@@ -83,7 +83,7 @@ export default async function EditalPage({
           </div>
 
           {edital.editalRef && (
-            <p className="mt-12 border-t border-border pt-6 font-mono text-xs text-ink-faint">
+            <p className="mt-12 border-t border-border pt-6 text-xs text-ink-faint">
               Fonte: {plainText(edital.editalRef)} (documento original no vault)
             </p>
           )}

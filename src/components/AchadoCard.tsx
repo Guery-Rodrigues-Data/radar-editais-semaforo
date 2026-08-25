@@ -11,16 +11,16 @@ export function AchadoCard({ achado }: { achado: Achado }) {
   return (
     <Link
       href={`/achados/${achado.id}`}
-      className="group flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-colors hover:border-ink-faint"
+      className="panel group flex flex-col gap-3 p-6 transition-transform hover:-translate-y-0.5"
     >
       <div className="flex items-center gap-2">
         {achado.signal && (
           <span
             aria-hidden
-            className={`h-2 w-2 rounded-full ${SIGNAL_COLOR[achado.signal]}`}
+            className={`h-2.5 w-2.5 rounded-full ${SIGNAL_COLOR[achado.signal]}`}
           />
         )}
-        <span className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
+        <span className="text-xs font-semibold text-signal-red">
           {achado.label}
         </span>
       </div>
@@ -28,7 +28,7 @@ export function AchadoCard({ achado }: { achado: Achado }) {
         {achado.title}
       </h3>
       <p className="text-sm leading-relaxed text-ink-muted">{achado.body}</p>
-      <span className="mt-auto pt-2 font-mono text-xs text-ink-faint transition-colors group-hover:text-ink">
+      <span className="mt-auto w-fit rounded-full bg-surface-sunken px-3 py-1 pt-1 text-xs font-medium text-ink-faint transition-colors group-hover:text-ink">
         {achado.editalSlugs.length} editais →
       </span>
     </Link>

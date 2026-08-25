@@ -52,12 +52,12 @@ export function EditaisExplorer({ editais }: { editais: Edital[] }) {
           placeholder="Buscar por cidade, título ou tag…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="min-w-[220px] flex-1 rounded-md border border-border-strong bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-ink"
+          className="min-w-[220px] flex-1 rounded-full border border-border-strong bg-surface px-4 py-2 text-sm text-ink outline-none focus:border-ink"
         />
         <select
           value={uf}
           onChange={(e) => setUf(e.target.value)}
-          className="rounded-md border border-border-strong bg-surface px-3 py-2 font-mono text-sm text-ink outline-none focus:border-ink"
+          className="rounded-full border border-border-strong bg-surface px-4 py-2 text-sm text-ink outline-none focus:border-ink"
         >
           <option value="todos">Todos os estados</option>
           {ufs.map((u) => (
@@ -69,7 +69,7 @@ export function EditaisExplorer({ editais }: { editais: Edital[] }) {
         <select
           value={maturidade}
           onChange={(e) => setMaturidade(e.target.value)}
-          className="rounded-md border border-border-strong bg-surface px-3 py-2 font-mono text-sm text-ink outline-none focus:border-ink"
+          className="rounded-full border border-border-strong bg-surface px-4 py-2 text-sm text-ink outline-none focus:border-ink"
         >
           <option value="todos">Toda maturidade</option>
           <option value="madura">Central madura</option>
@@ -77,24 +77,24 @@ export function EditaisExplorer({ editais }: { editais: Edital[] }) {
         </select>
       </div>
 
-      <p className="mt-4 font-mono text-xs text-ink-faint">
+      <p className="mt-4 text-xs text-ink-faint">
         {filtered.length} de {editais.length} editais
       </p>
 
-      <div className="mt-4 overflow-x-auto rounded-lg border border-border">
+      <div className="panel mt-4 overflow-x-auto">
         <table className="w-full min-w-[640px] border-collapse text-sm">
           <thead>
-            <tr className="border-b border-border bg-surface-sunken text-left">
-              <th className="px-4 py-3 font-mono text-[11px] uppercase tracking-wide text-ink-faint">
+            <tr className="border-b border-border text-left">
+              <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
                 Cidade
               </th>
-              <th className="px-4 py-3 font-mono text-[11px] uppercase tracking-wide text-ink-faint">
+              <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
                 UF
               </th>
-              <th className="px-4 py-3 font-mono text-[11px] uppercase tracking-wide text-ink-faint">
+              <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
                 Maturidade
               </th>
-              <th className="px-4 py-3 font-mono text-[11px] uppercase tracking-wide text-ink-faint">
+              <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
                 Tags
               </th>
             </tr>
@@ -109,7 +109,7 @@ export function EditaisExplorer({ editais }: { editais: Edital[] }) {
                   key={edital.slug}
                   className="border-b border-border last:border-0 hover:bg-surface-sunken"
                 >
-                  <td className="px-4 py-3">
+                  <td className="px-5 py-4">
                     <Link
                       href={`/editais/${encodeURIComponent(edital.slug)}`}
                       className="block"
@@ -124,24 +124,22 @@ export function EditaisExplorer({ editais }: { editais: Edital[] }) {
                       )}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 font-mono text-ink-muted">
-                    {edital.uf}
-                  </td>
-                  <td className="px-4 py-3 text-ink-muted">
+                  <td className="px-5 py-4 text-ink-muted">{edital.uf}</td>
+                  <td className="px-5 py-4 text-ink-muted">
                     {maturidadeTag ? MATURIDADE_LABEL[maturidadeTag] : "—"}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-5 py-4">
                     <div className="flex flex-wrap gap-1.5">
                       {edital.tags.slice(0, 3).map((t) => (
                         <span
                           key={t}
-                          className="rounded-full bg-surface-sunken px-2 py-0.5 font-mono text-[10px] text-ink-muted"
+                          className="rounded-full bg-surface-sunken px-2.5 py-1 text-[11px] text-ink-muted"
                         >
                           {t}
                         </span>
                       ))}
                       {edital.tags.length > 3 && (
-                        <span className="font-mono text-[10px] text-ink-faint">
+                        <span className="text-[11px] text-ink-faint">
                           +{edital.tags.length - 3}
                         </span>
                       )}
