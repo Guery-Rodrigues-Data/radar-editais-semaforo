@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StatCard } from "@/components/StatCard";
 import { BarPanel } from "@/components/BarPanel";
+import { DonutChart } from "@/components/DonutChart";
 import { AchadoChip } from "@/components/AchadoChip";
 import { achados, curatedStats, protocoloPlenoChart } from "@/data/achados";
 import { editais, backlog, maturidadeSplit, editaisPorUf } from "@/lib/data";
@@ -44,6 +45,10 @@ export default function Home() {
             <StatCard
               value={`${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`}
               label="exigem protocolo aberto pleno"
+              gauge={{
+                value: curatedStats.protocoloAbertoPleno,
+                total: curatedStats.protocoloAbertoTotal,
+              }}
             />
             <StatCard
               value="UTMC2"
@@ -65,8 +70,10 @@ export default function Home() {
                 value: d.casos,
               }))}
             />
-            <BarPanel
+            <DonutChart
               title="Maturidade da central"
+              centerValue={String(editais.length)}
+              centerLabel="editais"
               data={maturidade.map((d) => ({
                 label: d.maturidade,
                 value: d.total,
