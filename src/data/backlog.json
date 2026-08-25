@@ -1,0 +1,233 @@
+[
+  {
+    "requisito": "Central/software de controle de tráfego",
+    "apareceEm": "34/34",
+    "count": 34,
+    "total": 34,
+    "observacao": "Base de tudo — até o edital mais simples (Rio do Sul) inclui central, mesmo que sem nenhuma especificação técnica"
+  },
+  {
+    "requisito": "Monitoramento remoto de falha/alarme dos controladores",
+    "apareceEm": "30/34 (+ Escada, DETRAN/SP, Santana de Parnaíba, São João da Boa Vista, edital de Cuiabá; sem confirmação clara em Guaíba/Jequié/Lajeado — \"piso\" sem spec)",
+    "count": 30,
+    "total": 34,
+    "observacao": "Requisito básico esperado em qualquer central, do mais simples ao mais maduro"
+  },
+  {
+    "requisito": "Controle adaptativo em tempo real",
+    "apareceEm": "20/34 (+ Escada, DETRAN/SP, Santana de Parnaíba, São João da Boa Vista)",
+    "count": 20,
+    "total": 34,
+    "observacao": "Varia de \"item de planilha\" (Vitória) a módulo detalhado com matemática de ajuste (Farroupilha, Ribeirão Preto, Duque de Caxias). **DETRAN-BA** lista as 6 estratégias mais completas do vault (incl. Adaptativo Centralizado e Local)"
+  },
+  {
+    "requisito": "Câmeras/vídeo integrado à central",
+    "apareceEm": "16/34 (+ Ribeirão Preto 2022 — trio ONVIF/NTCIP/SNMP, 2ª confirmação depois de Paranaguá)",
+    "count": 16,
+    "total": 34,
+    "observacao": "Vai de \"kit laço virtual\" simples até CFTV completo com PTZ/mosaico (Farroupilha, Ribeirão Preto, Paranaguá) ou LPR/OCR (Santo André, Alfenas); DETRAN-BA soma câmera com software analítico de vídeo"
+  },
+  {
+    "requisito": "Onda verde / sincronização de corredor",
+    "apareceEm": "10/34 (+ Itaberaí-GO, achado isolado não processado em nota própria por baixo sinal de central)",
+    "count": 10,
+    "total": 34,
+    "observacao": "Um dos benefícios mais usados pra justificar investimento em central; Fortaleza (SCOOT) é literalmente a tecnologia de origem do conceito"
+  },
+  {
+    "requisito": "Protocolo aberto de integração (controlador↔central ou subsistema)",
+    "apareceEm": "8/34 pleno (Cuiabá, Foz, Farroupilha, Ribeirão Preto, Fortaleza, Paranaguá, Cubatão, **DETRAN/SP** — UTMC2/NTCIP com cláusula \"proprietário só vale com abertura de software\") + 3/34 parcial/ambíguo (Londrina e Indaiatuba, só no No-Break; **Santana de Parnaíba** — \"protocolo aberto e público\" sem nomear padrão)",
+    "count": 8,
+    "total": 34,
+    "observacao": "Ver [[Interoperabilidade e Protocolos Abertos]] — UTMC2 lidera com 4 casos plenos agora, à frente de UNE 135401-4 (2). Boa parte dos editais \"piso\" (Guaíba, Jequié, Lajeado) não exige protocolo nomeado — inclui **Jaraguá do Sul**, que tem protocolo próprio (ANTARES) documentado mas não é padrão multi-fabricante"
+  },
+  {
+    "requisito": "Redundância de infraestrutura (servidor, nobreak, link de dados)",
+    "apareceEm": "7/34 (Cuiabá, Farroupilha, Londrina, Ribeirão Preto, Indaiatuba, Paranaguá, Boa Vista — failover automático dual-chip entre operadoras)",
+    "count": 7,
+    "total": 34,
+    "observacao": "Sinal de que comprador mais maduro trata a central como sistema crítico"
+  },
+  {
+    "requisito": "Equipe dedicada operando a central (presencial ou remota)",
+    "apareceEm": "6/34 (Vitória, Cuiabá, Indaiatuba — presencial; Santo André — remota; Dourados — \"Modo Assistido\"; **Escada** — operação terceirizada com operador técnico dedicado)",
+    "count": 6,
+    "total": 34,
+    "observacao": "Modelo \"operação terceirizada\", não SaaS puro"
+  },
+  {
+    "requisito": "Notificação de falha/status via mensageria genérica (SMS/WhatsApp/Telegram)",
+    "apareceEm": "7/34 (Londrina, Criciúma, Santarém, Santo André, Alfenas, Dourados, **Escada** — alerta de congestionamento via SMS/WhatsApp/Telegram)",
+    "count": 7,
+    "total": 34,
+    "observacao": "Tag confirmada — texto idêntico em Santo André/Alfenas/Dourados, ver [[Índice de Tags]]"
+  },
+  {
+    "requisito": "Central vendida como item único de planilha, sem especificação de software",
+    "apareceEm": "3/34 (**Guaíba**, **Jequié**, **Lajeado**)",
+    "count": 3,
+    "total": 34,
+    "observacao": "Padrão \"piso\" em municípios pequenos/médios — central concorre como item de catálogo, não por diferencial técnico declarado em edital; watch list, considerar promover a tag se repetir de novo"
+  },
+  {
+    "requisito": "Lote único/sem parcelamento justificado por risco de interoperabilidade multi-fornecedor",
+    "apareceEm": "2/34 (**Guaíba** — central+controlador no mesmo lote; **Jequié** — lote único \"por compatibilidade/interoperabilidade... controle centralizado em um único fornecedor\")",
+    "count": 2,
+    "total": 34,
+    "observacao": "Estratégia comercial oposta à lógica de protocolo aberto multi-fabricante — watch list"
+  },
+  {
+    "requisito": "Sistema de Gestão para Operação e Manutenção separado do controle de tráfego (OS, patrimônio, atendimento)",
+    "apareceEm": "4/34 (**Escada**, **Santana de Parnaíba**, **BA-Jequié** — item de patrimônio/inventário na central, **Ribeirão Preto 2022** — Plataforma de Integração com módulos separados)",
+    "count": 4,
+    "total": 34,
+    "observacao": "\"Central\" nesse mercado tende a ser um conjunto de sistemas distintos (controle de tráfego vs. gestão de ativos/OS), não produto monolítico — watch list, considerar promover a tag"
+  },
+  {
+    "requisito": "Notificação de falha/status via app dedicado (mobile próprio)",
+    "apareceEm": "1/24 (Várzea Grande)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Implementação distinta da mensageria genérica — watch list"
+  },
+  {
+    "requisito": "Notificação de falha via SMS/e-mail (sem app de mensagem)",
+    "apareceEm": "1/24 (Cubatão)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Terceira variante de canal de alerta — watch list"
+  },
+  {
+    "requisito": "Prioridade semafórica pra transporte público (BSP)",
+    "apareceEm": "3/24 (Londrina — sem detalhar; Ribeirão Preto — GPS; Fortaleza — estende a VLT/trem)",
+    "count": 3,
+    "total": 24,
+    "observacao": "Tag confirmada. Alfenas (RFID) é conceito relacionado mas não é BSP de transporte público"
+  },
+  {
+    "requisito": "Gestão de eventos/incidentes com plano de resposta automatizado",
+    "apareceEm": "1/24 (Farroupilha)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Mais avançado — \"runbook\" informatizado"
+  },
+  {
+    "requisito": "Multiagência (trânsito + guarda + polícia na mesma plataforma)",
+    "apareceEm": "2/24 (Farroupilha, Paranaguá)",
+    "count": 2,
+    "total": 24,
+    "observacao": "Segundo caso confirma que não é exclusividade de um único edital extremo"
+  },
+  {
+    "requisito": "Integração com fonte de dados externa (Waze/Google Maps)",
+    "apareceEm": "5/24 (Farroupilha — básica; Indaiatuba, Santo André, Alfenas — API REST completa; Criciúma — só mapa de fundo)",
+    "count": 5,
+    "total": 24,
+    "observacao": "Santo André e Alfenas replicam quase exatamente o pacote de Indaiatuba — ver \"Quem pede bem\""
+  },
+  {
+    "requisito": "Leitura de placa / cerco eletrônico (LPR)",
+    "apareceEm": "4/24 (Farroupilha; Santo André e Alfenas — módulo OCR; Paranaguá — busca fonética por nome)",
+    "count": 4,
+    "total": 24,
+    "observacao": "Adjacente a semáforo — mais fiscalização/investigação que engenharia de tráfego pura"
+  },
+  {
+    "requisito": "Fiscalização eletrônica (radar) com analytics/ranking integrado à mesma plataforma",
+    "apareceEm": "1/24 (Indaiatuba)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Funde trânsito + fiscalização + mobilidade num único painel — watch list"
+  },
+  {
+    "requisito": "Preferência explícita por central de baixo custo/implantação leve (nuvem ou SaaS web)",
+    "apareceEm": "3/24 (Morrinhos, Santarém, **DETRAN-BA** — dois softwares distintos, ambos \"licença... hospedagem SaaS\")",
+    "count": 3,
+    "total": 24,
+    "observacao": "Santarém chega a **proibir por escrito** central que exija instalação; DETRAN-BA formaliza SaaS como modelo padrão do edital-modelo estadual"
+  },
+  {
+    "requisito": "Licença perpétua/on-premise (aquisição, não assinatura)",
+    "apareceEm": "1/24 (Criciúma)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Oposto direto do modelo SaaS/assinatura visto na maioria — watch list"
+  },
+  {
+    "requisito": "Integração/customização de protocolo cobrada como item de linha separado (não embutida na licença)",
+    "apareceEm": "3/24 (Duque de Caxias, Cubatão, Serra Talhada)",
+    "count": 3,
+    "total": 24,
+    "observacao": "Tag confirmada — deixou de ser achado isolado, ver [[Índice de Tags]]"
+  },
+  {
+    "requisito": "Plataforma de dados analíticos com ML/BI e consulta em linguagem natural via LLM",
+    "apareceEm": "3/24 (Indaiatuba, Santo André, Alfenas)",
+    "count": 3,
+    "total": 24,
+    "observacao": "Tag confirmada. Indaiatuba segue mais completo (privacidade diferencial + SSO corporativo)"
+  },
+  {
+    "requisito": "Indicadores de disponibilidade MTBF/MTTR por controlador",
+    "apareceEm": "1/24 (Indaiatuba)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Métrica de confiabilidade mais rigorosa que \"está online/offline\" — watch list"
+  },
+  {
+    "requisito": "Módulo de alerta climático/pluviométrico integrado à central",
+    "apareceEm": "3/24 (Londrina, Santo André, Alfenas)",
+    "count": 3,
+    "total": 24,
+    "observacao": "Tag confirmada — Santo André é o mais detalhado"
+  },
+  {
+    "requisito": "Concessão/PPP de longuíssimo prazo (iluminação pública + semáforo no mesmo contrato)",
+    "apareceEm": "1/24 (Fortaleza)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Modalidade contratual nova no vault — watch list"
+  },
+  {
+    "requisito": "SLA de manutenção escalonado por tipo de componente/severidade",
+    "apareceEm": "2/24 (Alfenas, Dourados — mesmos números, mesmo texto)",
+    "count": 2,
+    "total": 24,
+    "observacao": "Reforça o achado de template \"OTTO\"/\"GS\" — ver \"Quem pede bem\""
+  },
+  {
+    "requisito": "Cláusula de locação com transferência de propriedade após renovação de longo prazo",
+    "apareceEm": "1/24 (Paranaguá — 60 meses)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Modelo comercial que reduz risco percebido pro município — watch list"
+  },
+  {
+    "requisito": "Prova de Amostra/demonstração com poder eliminatório e checklist extenso",
+    "apareceEm": "1/24 (**DETRAN-BA** — 30+ itens, reprovação inabilita)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Processo de homologação técnica mais rigoroso do vault — watch list"
+  },
+  {
+    "requisito": "Minuta-modelo de edital em nível estadual (reutilizável por qualquer município)",
+    "apareceEm": "1/24 (**DETRAN-BA**)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Watch list — canal de distribuição de demanda potencialmente relevante"
+  },
+  {
+    "requisito": "Protocolo \"aberto\" que na verdade é proprietário documentado (não padrão multi-fabricante)",
+    "apareceEm": "1/24 (**Jaraguá do Sul** — sistema ANTARES)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Nuance terminológica importante — ver [[Interoperabilidade e Protocolos Abertos]]"
+  },
+  {
+    "requisito": "SLA de sincronização controlador-central em segundos (ex. programação completa em <60s)",
+    "apareceEm": "1/24 (**Boa Vista**)",
+    "count": 1,
+    "total": 24,
+    "observacao": "Métrica objetiva de performance, mesmo espírito dos 90% de acerto de leitura de placa de Farroupilha — watch list"
+  }
+]

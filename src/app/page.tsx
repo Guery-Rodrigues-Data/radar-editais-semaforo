@@ -1,69 +1,149 @@
-import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { StatStrip } from "@/components/StatStrip";
+import { AchadoCard } from "@/components/AchadoCard";
+import { achados, curatedStats } from "@/data/achados";
+import { editais, backlog } from "@/lib/data";
 
 export default function Home() {
+  const featured = achados.find((a) => a.featured) ?? achados[0];
+  const rest = achados.filter((a) => a.id !== featured.id);
+  const topBacklog = [...backlog]
+    .sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
+    .slice(0, 5);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <SiteHeader />
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="mx-auto max-w-6xl px-6 pt-16 pb-12 sm:pt-24">
+          <p className="font-mono text-xs uppercase tracking-wider text-ink-faint">
+            {editais.length} editais lidos · sinalização semafórica · Brasil
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl">
+            Nenhuma prefeitura lê o edital da vizinha.
+            <br />A gente leu {editais.length} ao mesmo tempo.
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
+            Isso é o que apareceu: um fornecedor com o mesmo texto em 3
+            estados, um protocolo que virou padrão de fato, e o primeiro
+            edital do Brasil pedindo IA generativa pra trânsito.
+          </p>
+        </section>
+
+        {/* Achado em destaque */}
+        <section className="mx-auto max-w-6xl px-6 pb-6">
+          <Link
+            href={`/achados/${featured.id}`}
+            className="group grid gap-6 rounded-xl border border-border-strong bg-surface p-8 transition-colors hover:border-ink-faint sm:grid-cols-[1fr_auto] sm:items-center"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <div>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-signal-red">
+                {featured.label}
+              </span>
+              <h2 className="mt-2 max-w-xl font-display text-2xl font-semibold leading-snug text-ink sm:text-3xl">
+                {featured.title}
+              </h2>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">
+                {featured.body}
+              </p>
+            </div>
+            <div className="flex items-center gap-3 sm:flex-col sm:items-end">
+              {["SP", "MG", "MS"].map((uf) => (
+                <span
+                  key={uf}
+                  className="rounded-full border border-border-strong bg-surface-sunken px-3 py-1 font-mono text-xs text-ink-muted"
+                >
+                  {uf}
+                </span>
+              ))}
+            </div>
+          </Link>
+        </section>
+
+        {/* Stats */}
+        <section className="mx-auto max-w-6xl px-6 py-4">
+          <StatStrip
+            stats={[
+              { value: String(editais.length), label: "editais analisados" },
+              {
+                value: `${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`,
+                label: "exigem protocolo aberto pleno",
+              },
+              {
+                value: `${curatedStats.utmc2Pleno}×`,
+                label: "UTMC2 é o protocolo líder",
+              },
+              {
+                value: String(curatedStats.fornecedoresIdentificados),
+                label: "fornecedores identificados por nome",
+              },
+            ]}
+          />
+        </section>
+
+        {/* Grid de achados */}
+        <section className="mx-auto max-w-6xl px-6 py-12">
+          <h2 className="font-display text-xl font-semibold text-ink">
+            Mais achados que só aparecem cruzando vários editais
+          </h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((achado) => (
+              <AchadoCard key={achado.id} achado={achado} />
+            ))}
+          </div>
+        </section>
+
+        {/* Teasers pro nível 2 */}
+        <section className="mx-auto max-w-6xl px-6 pb-16">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/backlog"
+              className="rounded-lg border border-border bg-surface p-6 transition-colors hover:border-ink-faint"
+            >
+              <span className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
+                Candidatos a backlog
+              </span>
+              <h3 className="mt-2 font-display text-lg font-semibold text-ink">
+                O que os editais mais pedem, ordenado por frequência
+              </h3>
+              <p className="mt-2 text-sm text-ink-muted">
+                {backlog.length} requisitos, do mais universal (
+                {topBacklog[0]?.requisito.toLowerCase()}) ao mais raro.
+              </p>
+            </Link>
+            <Link
+              href="/editais"
+              className="rounded-lg border border-border bg-surface p-6 transition-colors hover:border-ink-faint"
+            >
+              <span className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
+                Base completa
+              </span>
+              <h3 className="mt-2 font-display text-lg font-semibold text-ink">
+                Explore os {editais.length} editais um por um
+              </h3>
+              <p className="mt-2 text-sm text-ink-muted">
+                Filtre por estado, protocolo, módulo ou maturidade da
+                central.
+              </p>
+            </Link>
+          </div>
+        </section>
+
+        {/* Rodapé de rigor */}
+        <section className="border-t border-border">
+          <div className="mx-auto max-w-6xl px-6 py-8">
+            <p className="max-w-2xl text-xs leading-relaxed text-ink-faint">
+              Versão prévia (25/08/2026) — amostra em crescimento, {editais.length}{" "}
+              de ~121 editais do vault, escolhidos por perfil de central/
+              plataforma. Achados vêm de leitura e cruzamento manual dos
+              editais publicados; ainda não é validação técnica profunda de
+              cada cláusula.
+            </p>
+          </div>
+        </section>
       </main>
-    </div>
+    </>
   );
 }

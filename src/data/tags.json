@@ -1,0 +1,138 @@
+[
+  {
+    "id": "protocolo",
+    "label": "protocolo de integração controlador↔central exigido/citado",
+    "tags": [
+      {
+        "id": "protocolo/ntcip",
+        "description": "[[Glossário de Termos#NTCIP|NTCIP]]. Visto em [[AN_MT_Cuiaba|Cuiabá]], [[AN_RS_Farroupilha|Farroupilha]] (capacidade de integrar), [[AN_PR_Paranagua|Paranaguá]] (capacidade de integrar NTCIP 1201/1202, mesma redação de Farroupilha). Também citado em [[AN_SP_Ribeirao-Preto|Ribeirão Preto]] e agora [[AN_PR_Paranagua|Paranaguá]] (NTCIP 1203, mas especificamente pro PMV, não pro controlador semafórico)."
+      },
+      {
+        "id": "protocolo/utmc",
+        "description": "padrão britânico UTMC2. Visto pleno (link controlador-central) em [[AN_PR_Foz-do-Iguacu|Foz do Iguaçu]], [[AN_CE_Fortaleza|Fortaleza]] (exigência explícita, controladores de múltiplos fabricantes — PEEK/DIGICON/EcoTrafiX — precisam suportar), [[AN_SP_Cubatao|Cubatão]] (cita a norma específica UTMC TS003_003:2009) e agora [[!AN_SP_Detran|DETRAN/SP]] (mesma citação exata de norma de Cubatão, TS003_003:2009+TS004_006:2010) — **agora 4 casos plenos**, líder isolado sobre UNE 135401-4 (2). Capacidade de integrar em [[AN_RS_Farroupilha|Farroupilha]] e [[AN_PR_Paranagua|Paranaguá]]. Visto parcial (só No-Break/UPS, não no link controlador-central) em [[AN_PR_Londrina|Londrina]] e [[AN_SP_Indaiatuba|Indaiatuba]] — **padrão suspeito de cláusula de template repetida entre TRs nesses 2 últimos casos**, texto quase idêntico, ver [[Interoperabilidade e Protocolos Abertos]]."
+      },
+      {
+        "id": "protocolo/onvif-ntcip-snmp-cftv",
+        "description": "trio de protocolos abertos em paralelo especificamente para câmeras PTZ de CFTV (não pro link controlador-central). Visto em [[AN_PR_Paranagua|Paranaguá]] e agora confirmado uma 2ª vez, texto quase idêntico, em [[!AN_SP_Ribeirao-Preto-2022|Ribeirão Preto (2022)]] — 2 casos, candidato a padrão de mercado pra câmera de tráfego."
+      },
+      {
+        "id": "protocolo/une-135401-4",
+        "description": "padrão espanhol/europeu. Visto em [[AN_RS_Farroupilha|Farroupilha]] (é o que o sistema incumbente fala hoje) e pleno em [[AN_SP_Ribeirao-Preto|Ribeirão Preto]] e agora também [[AN_PR_Paranagua|Paranaguá]] (protocolo pleno do controlador semafórico, com capacidade adicional de integrar NTCIP/UTMC — mesmo texto \"dialeto europeu\" de Farroupilha)."
+      },
+      {
+        "id": "protocolo/scoot",
+        "description": "ver [[Glossário de Termos#SCOOT|SCOOT]]. Visto em [[AN_PR_Foz-do-Iguacu|Foz do Iguaçu]] (central incumbente) e em [[AN_CE_Fortaleza|Fortaleza]] (sistema CTAFOR/PEEK, o caso mais antigo e maduro do vault, decênios de operação continuada)."
+      }
+    ]
+  },
+  {
+    "id": "modulo",
+    "label": "funcionalidade/módulo de software específico exigido",
+    "tags": [
+      {
+        "id": "modulo/cftv",
+        "description": "câmeras de monitoramento (PTZ, mosaico, presets). [[AN_RS_Farroupilha|Farroupilha]], [[AN_PR_Paranagua|Paranaguá]] (câmeras PTZ IP com 3 protocolos abertos em paralelo: ONVIF, NTCIP, SNMP)."
+      },
+      {
+        "id": "modulo/lpr-cerco-eletronico",
+        "description": "leitura de placa (License Plate Recognition) pra cerco eletrônico. [[AN_RS_Farroupilha|Farroupilha]]."
+      },
+      {
+        "id": "modulo/dai-deteccao-incidente",
+        "description": "Detecção Automática de Incidente por vídeo (fila, contramão, objeto na via etc). [[AN_RS_Farroupilha|Farroupilha]]."
+      },
+      {
+        "id": "modulo/integracao-waze",
+        "description": "troca de dados bidirecional com Waze/Google. [[AN_RS_Farroupilha|Farroupilha]], [[AN_SP_Indaiatuba|Indaiatuba]] (integração muito mais profunda: rotas, congestionamento, anomalias, mapa de calor de buracos, edição colaborativa de mapa, tudo via API REST com carta de solidariedade do fabricante), [[AN_SC_Criciuma|Criciúma]] (mais simples: só mapa de fundo com trânsito em tempo real do Google Maps/Waze sobreposto aos pontos cadastrados, sem troca de eventos bidirecional), [[AN_SP_Santo-Andre|Santo André]] e [[AN_MG_Alfenas|Alfenas]] (mesmo pacote profundo de Indaiatuba — ver nota sobre template reciclado entre os dois)."
+      },
+      {
+        "id": "modulo/notificacao-mensageria",
+        "description": "central envia alerta de falha via SMS e/ou apps de mensagem genéricos (WhatsApp, Telegram), configurável por severidade. Confirmada em 6 editais: [[AN_PR_Londrina|Londrina]] (WhatsApp/Telegram), [[AN_SC_Criciuma|Criciúma]] (SMS + Telegram/WhatsApp), [[AN_PA_Santarem|Santarém]] (SMS/WhatsApp), [[AN_SP_Santo-Andre|Santo André]], [[AN_MG_Alfenas|Alfenas]] e [[AN_MS_Dourados|Dourados]] (Telegram/WhatsApp, texto idêntico ao de Santo André/Alfenas — ver \"Central OTTO\" no watch list). Distinta de app mobile dedicado e de notificação via SMS/e-mail sem app de mensagem instantânea (ver [[AN_SP_Cubatao|Cubatão]] no watch list abaixo)."
+      },
+      {
+        "id": "modulo/plataforma-dados-ia",
+        "description": "central de tráfego estendida com plataforma de dados analíticos: ML+BI integrados, ingestão de dados de app de navegação (Waze) via API REST, consulta em linguagem natural via LLM, análise geoespacial. **Promovida de watch list a tag** — confirmada em 3 editais: [[AN_SP_Indaiatuba|Indaiatuba]] (primeiro caso, mais completo — inclui privacidade diferencial e SSO corporativo), [[AN_SP_Santo-Andre|Santo André]] e [[AN_MG_Alfenas|Alfenas]] (mesmo pacote, texto de especificação quase idêntico entre os dois últimos). Achado mais relevante do vault pro objetivo de longo prazo (pitch de iniciativa de IA) — ver [[Requisitos de Plataforma - Candidatos a Backlog]]."
+      },
+      {
+        "id": "modulo/pluviometrico",
+        "description": "módulo de software que interpreta dados de sensores pluviométricos instalados nos controladores, gera alarme por nível de precipitação (geralmente 4 níveis: verde/amarelo/laranja/vermelho). **Promovida de watch list a tag** — confirmada em 2 editais: [[AN_PR_Londrina|Londrina]] (primeiro caso) e [[AN_SP_Santo-Andre|Santo André]] (mais detalhado: tempo médio de alagamento/escoamento, banco de dados histórico entregável ao fim do contrato)."
+      },
+      {
+        "id": "modulo/multiagencia",
+        "description": "múltiplos órgãos (trânsito, guarda, polícia) operando a mesma central. [[AN_RS_Farroupilha|Farroupilha]] e agora [[AN_PR_Paranagua|Paranaguá]] (segundo caso, mesmo \"dialeto\" técnico dos dois)."
+      },
+      {
+        "id": "modulo/plano-resposta-automatizado",
+        "description": "runbook automatizado disparado por evento. [[AN_RS_Farroupilha|Farroupilha]]."
+      },
+      {
+        "id": "modulo/simulacao-trafego",
+        "description": "software de simulação on-premise, separado da central. [[AN_ES_Vitoria|Vitória]]."
+      },
+      {
+        "id": "modulo/laco-virtual",
+        "description": "detecção de veículo por câmera+software em vez de laço físico. Ver [[Glossário de Termos#Laço Detector (físico) / Laço Virtual]]. [[AN_ES_Vitoria|Vitória]]."
+      },
+      {
+        "id": "modulo/painel-mensagem-variavel",
+        "description": "PMV integrado à central. [[AN_ES_Vitoria|Vitória]], [[AN_RS_Farroupilha|Farroupilha]], [[AN_PR_Paranagua|Paranaguá]] (protocolo NTCIP 1203 + DGT + extensível a proprietário)."
+      },
+      {
+        "id": "modulo/video-wall-coi",
+        "description": "infraestrutura de sala de operação física (video wall, terminais dedicados) — sinaliza que o \"produto\" esperado é um Centro de Operações Integradas, não só um dashboard web. [[AN_MT_Cuiaba|Cuiabá]], [[AN_SP_Indaiatuba|Indaiatuba]] (video wall de 6 telas + reforma completa do espaço)."
+      },
+      {
+        "id": "modulo/prioridade-onibus-bsp",
+        "description": "Bus Signal Priority: prioridade semafórica pra transporte público, com detecção do ônibus (GPS ou sensor) e priorização decidida pelo software central. **Promovida de watch list a tag** — visto em [[AN_PR_Londrina|Londrina]] (citado de passagem), confirmado em detalhe em [[AN_SP_Ribeirao-Preto|Ribeirão Preto]] (detecção GPS, tabela de priorização na central) e em [[AN_CE_Fortaleza|Fortaleza]] (único caso do vault que estende a prioridade também pra VLT/trem, não só ônibus)."
+      }
+    ]
+  },
+  {
+    "id": "contratacao",
+    "label": "modelo de contratação",
+    "tags": [
+      {
+        "id": "contratacao/srp",
+        "description": "Sistema de Registro de Preços (ver [[Glossário de Termos#SRP — Sistema de Registro de Preços|SRP]]). [[AN_MT_Cuiaba|Cuiabá]], [[AN_PR_Foz-do-Iguacu|Foz do Iguaçu]], [[AN_GO_Morrinhos|Morrinhos]], [[AN_PA_Santarem|Santarém]], [[AN_MG_Alfenas|Alfenas]], [[AN_PR_Paranagua|Paranaguá]], [[AN_MS_Dourados|Dourados]], [[AN_BA_Detran-Salvador|DETRAN-BA]] (âmbito estadual), [[AN_RR_Boa-Vista|Boa Vista]], [[AN_MA_Balsas|Balsas]], [[AN_SC_Jaragua-do-Sul|Jaraguá do Sul]], [[!AN_RS_Guaiba|Guaíba]], [[!AN_SP_Detran|DETRAN/SP]] (âmbito estadual), [[!AN_BA_Jequie|Jequié]], [[!AN_RS_Lajeado|Lajeado]], [[!AN_MG_Poco-Fundo|Poço Fundo]], [[!AN_MT_Cuiaba-Edital|Cuiabá (edital formal)]], [[!AN_SP_Sao-Joao-da-Boa-Vista|São João da Boa Vista]]."
+      },
+      {
+        "id": "contratacao/pregao-eletronico",
+        "description": "pregão eletrônico \"puro\" (não SRP). [[AN_RS_Farroupilha|Farroupilha]], [[AN_PR_Londrina|Londrina]] (edital marca explicitamente \"Contratação tradicional\", não-SRP), [[AN_SC_Rio-do-Sul|Rio do Sul]], [[AN_SP_Indaiatuba|Indaiatuba]] (índice tinha resumido como \"contratação direta\" — leitura confirmou que é pregão eletrônico comum), [[AN_RJ_Duque-de-Caxias|Duque de Caxias]] (Concorrência Eletrônica, mesma família de \"não-SRP\"), [[AN_SP_Cubatao|Cubatão]], [[AN_PE_Serra-Talhada|Serra Talhada]], [[!AN_PE_Escada|Escada]], [[!AN_SP_Santana-de-Parnaiba|Santana de Parnaíba]]."
+      },
+      {
+        "id": "contratacao/servico-continuado",
+        "description": "contrato de prestação de serviço contínua (não entrega pontual). [[AN_ES_Vitoria|Vitória]], [[AN_MT_Cuiaba|Cuiabá]], [[AN_MT_Varzea-Grande|Várzea Grande]], [[AN_SC_Rio-do-Sul|Rio do Sul]], [[AN_SP_Santo-Andre|Santo André]]."
+      },
+      {
+        "id": "contratacao/operacao-terceirizada",
+        "description": "a contratada opera a central no dia a dia (equipe própria, plantão), não só entrega o software. [[AN_ES_Vitoria|Vitória]], [[AN_MT_Cuiaba|Cuiabá]], [[AN_SP_Santo-Andre|Santo André]] (equipe de operação remota baseada na sede da contratada), [[AN_MS_Dourados|Dourados]] (Modo Assistido — equipe presencial e de retaguarda)."
+      },
+      {
+        "id": "contratacao/manutencao-ampliacao",
+        "description": "contrato sobre sistema já existente, pra manter + expandir (não é implantação do zero). [[AN_RS_Farroupilha|Farroupilha]], [[AN_PR_Londrina|Londrina]], [[AN_SP_Ribeirao-Preto|Ribeirão Preto]] (fase 2 de projeto ITS existente), [[AN_MT_Varzea-Grande|Várzea Grande]] (manutenção com atualização tecnológica obrigatória embutida), [[AN_MS_Dourados|Dourados]], [[AN_PE_Serra-Talhada|Serra Talhada]]."
+      },
+      {
+        "id": "contratacao/hardware-apenas",
+        "description": "objeto é só equipamento, cidade já opera a própria central. [[AN_PR_Foz-do-Iguacu|Foz do Iguaçu]]."
+      },
+      {
+        "id": "contratacao/integracao-protocolo-avulsa",
+        "description": "customização/integração de protocolo cobrada como item de linha separado, não embutida na licença base do software. **Nova tag, 3 casos confirmados**: [[AN_RJ_Duque-de-Caxias|Duque de Caxias]] (\"Customização e Integração de Protocolos\"), [[AN_SP_Cubatao|Cubatão]] (\"Customização e integração de Protocolo UTMC2/SNMP\") e [[AN_PE_Serra-Talhada|Serra Talhada]] (\"Customização e integração de Protocolo\") — deixou de ser achado isolado, é padrão de precificação real desse mercado."
+      }
+    ]
+  },
+  {
+    "id": "central-maturidade",
+    "label": "nível de maturidade da central da cidade compradora",
+    "tags": [
+      {
+        "id": "central-maturidade/madura",
+        "description": "cidade já tem central rodando (o edital é sobre integrar/expandir/substituir peça dela). [[AN_MT_Cuiaba|Cuiabá]], [[AN_PR_Foz-do-Iguacu|Foz do Iguaçu]], [[AN_RS_Farroupilha|Farroupilha]], [[AN_PR_Londrina|Londrina]], [[AN_ES_Vitoria|Vitória]] (nível intermediário — já opera central, mas sem protocolo aberto exigido), [[AN_SP_Ribeirao-Preto|Ribeirão Preto]], [[AN_MT_Varzea-Grande|Várzea Grande]], [[AN_SC_Rio-do-Sul|Rio do Sul]] (central já existe, mas edital não especifica quase nada dela — \"piso\" com central existente, ver nota da própria página), [[AN_SP_Indaiatuba|Indaiatuba]] (o mais maduro do vault até agora — plataforma de dados/IA, não só central de tráfego), [[AN_SC_Criciuma|Criciúma]] (sistema existente em atualização tecnológica, mas sem protocolo aberto exigido — ver contraexemplo em [[Interoperabilidade e Protocolos Abertos]]), [[AN_CE_Fortaleza|Fortaleza]] (sistema CTAFOR/SCOOT decenal, provavelmente o parque mais antigo do vault), [[AN_SP_Santo-Andre|Santo André]], [[AN_MG_Alfenas|Alfenas]], [[AN_MS_Dourados|Dourados]] (Central OTTO, já 100% conectada ao parque), [[AN_SP_Cubatao|Cubatão]], [[AN_PE_Serra-Talhada|Serra Talhada]], [[AN_SC_Jaragua-do-Sul|Jaraguá do Sul]] (sistema ANTARES incumbente, com protocolo proprietário documentado — ver watch list e [[Interoperabilidade e Protocolos Abertos]]), [[!AN_SP_Ribeirao-Preto-2022|Ribeirão Preto (2022)]] (mesmo CCO do Contrato 152/2018), [[!AN_SP_Detran|DETRAN/SP]] (minuta estadual sobre centrais já em operação nos municípios), [[!AN_SP_Santana-de-Parnaiba|Santana de Parnaíba]] (Sistema de Gestão de Mobilidade existente), [[!AN_MT_Cuiaba-Edital|Cuiabá (edital formal)]] (mesmo CCTI/SEMOB)."
+      },
+      {
+        "id": "central-maturidade/nova",
+        "description": "implantação de central do zero, escopo simples (sem exigência de protocolo aberto ou módulo avançado). [[AN_GO_Morrinhos|Morrinhos]], [[AN_PA_Santarem|Santarém]] (transição explícita de controle local/descentralizado pra central web — um dos poucos editais que narra a maturidade como processo, não só declara o estado final), [[AN_PR_Paranagua|Paranaguá]] (parque atual sem capacidade de comunicação/centralização — implantação completa do zero, mas com escopo muito mais sofisticado que os outros casos \"novos\" do vault — ver nota própria), [[!AN_PE_Escada|Escada]], [[!AN_RS_Guaiba|Guaíba]] (central empacotada no lote dos controladores, sem especificação própria), [[!AN_BA_Jequie|Jequié]] (central como item de planilha), [[!AN_RS_Lajeado|Lajeado]] (idem, \"piso\" de catálogo), [[!AN_MG_Poco-Fundo|Poço Fundo]] (\"sistema inteligente\" no título sem nenhuma especificação de central/software), [[!AN_SP_Sao-Joao-da-Boa-Vista|São João da Boa Vista]]."
+      }
+    ]
+  }
+]
