@@ -1,148 +1,154 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StatStrip } from "@/components/StatStrip";
-import { AchadoCard } from "@/components/AchadoCard";
-import { achados, curatedStats } from "@/data/achados";
-import { editais, backlog } from "@/lib/data";
+import { BarPanel } from "@/components/BarPanel";
+import { AchadoChip } from "@/components/AchadoChip";
+import { achados, curatedStats, protocoloPlenoChart } from "@/data/achados";
+import { editais, backlog, maturidadeSplit, editaisPorUf } from "@/lib/data";
 
 export default function Home() {
-  const featured = achados.find((a) => a.featured) ?? achados[0];
-  const rest = achados.filter((a) => a.id !== featured.id);
+  const maturidade = maturidadeSplit();
+  const porUf = editaisPorUf().slice(0, 8);
   const topBacklog = [...backlog]
     .sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
-    .slice(0, 5);
+    .slice(0, 6)
+    .map((r) => ({
+      label:
+        r.requisito.length > 38
+          ? `${r.requisito.slice(0, 37)}…`
+          : r.requisito,
+      value: r.count ?? 0,
+    }));
 
   return (
     <>
       <SiteHeader />
       <main className="flex-1">
-        {/* Hero */}
-        <section className="mx-auto max-w-6xl px-6 pt-16 pb-12 sm:pt-24">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink-faint">
-            {editais.length} editais lidos · sinalização semafórica · Brasil
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h1 className="font-display text-2xl font-semibold text-ink">
+              Radar de Editais — Sinalização Semafórica
+            </h1>
+            <span className="font-mono text-xs text-ink-faint">
+              versão prévia · 25/08/2026
+            </span>
+          </div>
+          <p className="mt-1 text-sm text-ink-muted">
+            Padrões de mercado extraídos de {editais.length} editais de
+            licitação de sinalização semafórica pelo Brasil.
           </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl">
-            Nenhuma prefeitura lê o edital da vizinha.
-            <br />A gente leu {editais.length} ao mesmo tempo.
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
-            Isso é o que apareceu: um fornecedor com o mesmo texto em 3
-            estados, um protocolo que virou padrão de fato, e o primeiro
-            edital do Brasil pedindo IA generativa pra trânsito.
-          </p>
-        </section>
 
-        {/* Achado em destaque */}
-        <section className="mx-auto max-w-6xl px-6 pb-6">
-          <Link
-            href={`/achados/${featured.id}`}
-            className="group grid gap-6 rounded-xl border border-border-strong bg-surface p-8 transition-colors hover:border-ink-faint sm:grid-cols-[1fr_auto] sm:items-center"
-          >
-            <div>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-signal-red">
-                {featured.label}
-              </span>
-              <h2 className="mt-2 max-w-xl font-display text-2xl font-semibold leading-snug text-ink sm:text-3xl">
-                {featured.title}
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">
-                {featured.body}
-              </p>
-            </div>
-            <div className="flex items-center gap-3 sm:flex-col sm:items-end">
-              {["SP", "MG", "MS"].map((uf) => (
-                <span
-                  key={uf}
-                  className="rounded-full border border-border-strong bg-surface-sunken px-3 py-1 font-mono text-xs text-ink-muted"
+          {/* KPIs */}
+          <div className="mt-8">
+            <StatStrip
+              stats={[
+                { value: String(editais.length), label: "editais analisados" },
+                {
+                  value: `${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`,
+                  label: "exigem protocolo aberto pleno",
+                },
+                {
+                  value: "UTMC2",
+                  label: `protocolo líder (${curatedStats.utmc2Pleno} casos)`,
+                },
+                {
+                  value: String(curatedStats.fornecedoresIdentificados),
+                  label: "fornecedores identificados por nome",
+                },
+              ]}
+            />
+          </div>
+
+          {/* Charts */}
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            <BarPanel
+              title="Protocolo aberto pleno, por família"
+              data={protocoloPlenoChart.map((d) => ({
+                label: d.protocolo,
+                value: d.casos,
+              }))}
+            />
+            <BarPanel
+              title="Maturidade da central"
+              data={maturidade.map((d) => ({
+                label: d.maturidade,
+                value: d.total,
+                color:
+                  d.maturidade === "Madura"
+                    ? "var(--signal-green)"
+                    : d.maturidade === "Nova"
+                      ? "var(--signal-amber)"
+                      : "var(--ink-faint)",
+              }))}
+            />
+            <BarPanel
+              title="Editais por estado (top 8)"
+              data={porUf.map((d) => ({ label: d.uf, value: d.total }))}
+            />
+          </div>
+
+          <div className="mt-4">
+            <BarPanel
+              title="Top 6 requisitos mais pedidos"
+              data={topBacklog}
+              height={260}
+              labelWidth={260}
+            />
+          </div>
+
+          {/* Achados + links, lado a lado */}
+          <div className="mt-8 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+            <div className="rounded-md border border-border bg-surface p-5">
+              <div className="flex items-baseline justify-between">
+                <h2 className="font-display text-sm font-semibold text-ink">
+                  Achados — só aparecem cruzando vários editais
+                </h2>
+                <Link
+                  href="/achados"
+                  className="font-mono text-xs text-ink-faint hover:text-ink"
                 >
-                  {uf}
-                </span>
-              ))}
+                  ver todos
+                </Link>
+              </div>
+              <div className="mt-2">
+                {achados.map((achado) => (
+                  <AchadoChip key={achado.id} achado={achado} />
+                ))}
+              </div>
             </div>
-          </Link>
-        </section>
 
-        {/* Stats */}
-        <section className="mx-auto max-w-6xl px-6 py-4">
-          <StatStrip
-            stats={[
-              { value: String(editais.length), label: "editais analisados" },
-              {
-                value: `${curatedStats.protocoloAbertoPleno}/${curatedStats.protocoloAbertoTotal}`,
-                label: "exigem protocolo aberto pleno",
-              },
-              {
-                value: `${curatedStats.utmc2Pleno}×`,
-                label: "UTMC2 é o protocolo líder",
-              },
-              {
-                value: String(curatedStats.fornecedoresIdentificados),
-                label: "fornecedores identificados por nome",
-              },
-            ]}
-          />
-        </section>
-
-        {/* Grid de achados */}
-        <section className="mx-auto max-w-6xl px-6 py-12">
-          <h2 className="font-display text-xl font-semibold text-ink">
-            Mais achados que só aparecem cruzando vários editais
-          </h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((achado) => (
-              <AchadoCard key={achado.id} achado={achado} />
-            ))}
+            <div className="flex flex-col gap-4">
+              <Link
+                href="/backlog"
+                className="flex-1 rounded-md border border-border bg-surface p-5 transition-colors hover:border-ink-faint"
+              >
+                <span className="font-mono text-2xl font-semibold text-ink">
+                  {backlog.length}
+                </span>
+                <p className="mt-1 text-sm text-ink-muted">
+                  requisitos candidatos a backlog, por frequência
+                </p>
+              </Link>
+              <Link
+                href="/editais"
+                className="flex-1 rounded-md border border-border bg-surface p-5 transition-colors hover:border-ink-faint"
+              >
+                <span className="font-mono text-2xl font-semibold text-ink">
+                  {editais.length}
+                </span>
+                <p className="mt-1 text-sm text-ink-muted">
+                  editais explorados um por um, com filtro
+                </p>
+              </Link>
+            </div>
           </div>
-        </section>
 
-        {/* Teasers pro nível 2 */}
-        <section className="mx-auto max-w-6xl px-6 pb-16">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Link
-              href="/backlog"
-              className="rounded-lg border border-border bg-surface p-6 transition-colors hover:border-ink-faint"
-            >
-              <span className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-                Candidatos a backlog
-              </span>
-              <h3 className="mt-2 font-display text-lg font-semibold text-ink">
-                O que os editais mais pedem, ordenado por frequência
-              </h3>
-              <p className="mt-2 text-sm text-ink-muted">
-                {backlog.length} requisitos, do mais universal (
-                {topBacklog[0]?.requisito.toLowerCase()}) ao mais raro.
-              </p>
-            </Link>
-            <Link
-              href="/editais"
-              className="rounded-lg border border-border bg-surface p-6 transition-colors hover:border-ink-faint"
-            >
-              <span className="font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-                Base completa
-              </span>
-              <h3 className="mt-2 font-display text-lg font-semibold text-ink">
-                Explore os {editais.length} editais um por um
-              </h3>
-              <p className="mt-2 text-sm text-ink-muted">
-                Filtre por estado, protocolo, módulo ou maturidade da
-                central.
-              </p>
-            </Link>
-          </div>
-        </section>
-
-        {/* Rodapé de rigor */}
-        <section className="border-t border-border">
-          <div className="mx-auto max-w-6xl px-6 py-8">
-            <p className="max-w-2xl text-xs leading-relaxed text-ink-faint">
-              Versão prévia (25/08/2026) — amostra em crescimento, {editais.length}{" "}
-              de ~121 editais do vault, escolhidos por perfil de central/
-              plataforma. Achados vêm de leitura e cruzamento manual dos
-              editais publicados; ainda não é validação técnica profunda de
-              cada cláusula.
-            </p>
-          </div>
-        </section>
+          <p className="mt-10 max-w-2xl font-mono text-[11px] leading-relaxed text-ink-faint">
+            Versão prévia (25/08/2026) — amostra em crescimento, {editais.length}
+            {" "}de ~121 editais do vault. Leitura e cruzamento manual, ainda
+            não é validação técnica profunda de cada cláusula.
+          </p>
+        </div>
       </main>
     </>
   );

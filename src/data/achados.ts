@@ -76,3 +76,11 @@ export const curatedStats = {
   utmc2Pleno: 4,
   fornecedoresIdentificados: 3, // OTTO, ANTARES, CTAFOR/SCOOT
 };
+
+// Contagem de protocolo "pleno" por família — conferida manualmente na nota
+// Interoperabilidade e Protocolos Abertos (soma bate com curatedStats.protocoloAbertoPleno).
+export const protocoloPlenoChart = [
+  { protocolo: "UTMC2", casos: 4 },
+  { protocolo: "UNE 135401-4", casos: 3 },
+  { protocolo: "NTCIP", casos: 1 },
+];

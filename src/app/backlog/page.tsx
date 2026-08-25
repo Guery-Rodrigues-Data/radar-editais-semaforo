@@ -1,5 +1,5 @@
 import { SiteHeader } from "@/components/SiteHeader";
-import { BacklogTable } from "@/components/BacklogTable";
+import { BacklogChart } from "@/components/BacklogChart";
 import { backlog } from "@/lib/data";
 
 export default function BacklogPage() {
@@ -7,20 +7,13 @@ export default function BacklogPage() {
     <>
       <SiteHeader />
       <main className="flex-1">
-        <div className="mx-auto max-w-3xl px-6 py-12">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink-faint">
-            Candidatos a backlog
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold text-ink">
-            O que os editais mais pedem
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <h1 className="font-display text-2xl font-semibold text-ink">
+            Candidatos a backlog — o que os editais mais pedem
           </h1>
-          <p className="mt-2 max-w-xl text-sm text-ink-muted">
-            Rascunho de backlog, não decisão fechada — cada linha mostra em
-            quantos dos editais lidos aquele requisito aparece.
-          </p>
 
-          <div className="mt-8">
-            <BacklogTable rows={backlog} />
+          <div className="mt-6 rounded-md border border-border bg-surface p-5">
+            <BacklogChart rows={backlog} />
           </div>
         </div>
       </main>

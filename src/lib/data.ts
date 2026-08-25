@@ -66,6 +66,28 @@ export function plainText(md: string | null | undefined): string {
     .trim();
 }
 
+export function maturidadeSplit() {
+  const madura = editaisByTag("central-maturidade/madura").length;
+  const nova = editaisByTag("central-maturidade/nova").length;
+  const semTag = editais.length - madura - nova;
+  return [
+    { maturidade: "Madura", total: madura },
+    { maturidade: "Nova", total: nova },
+    { maturidade: "Não classificada", total: semTag },
+  ].filter((d) => d.total > 0);
+}
+
+export function editaisPorUf() {
+  const counts = new Map<string, number>();
+  for (const e of editais) {
+    if (!e.uf) continue;
+    counts.set(e.uf, (counts.get(e.uf) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .map(([uf, total]) => ({ uf, total }))
+    .sort((a, b) => b.total - a.total);
+}
+
 export function stats() {
   const total = editais.length;
   const protocoloAbertoTag = tagCategories.find((c) => c.id === "protocolo");
