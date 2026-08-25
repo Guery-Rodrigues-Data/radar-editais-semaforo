@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { BrazilMap, type MapLayer } from "./BrazilMap";
-import { getEdital } from "@/lib/data";
+import { useSelecaoEditais } from "./SelecaoEditaisContext";
 
 type Protocolo = { protocolo: string; casos: number; editalSlugs: string[] };
 
@@ -15,18 +14,8 @@ export function ProtocoloEMapa({
   mapLayers: MapLayer[];
   editalSlugsByUf: Record<string, string[]>;
 }) {
-  const [ativo, setAtivo] = useState<string | null>(null);
-
+  const { selecao, selecionar } = useSelecaoEditais();
   const maxCasos = Math.max(...protocolos.map((p) => p.casos));
-  const selecionado = protocolos.find((p) => p.protocolo === ativo);
-
-  const highlightUfs = useMemo(() => {
-    if (!selecionado) return [];
-    const ufs = selecionado.editalSlugs
-      .map((slug) => getEdital(slug)?.uf)
-      .filter((uf): uf is string => Boolean(uf));
-    return Array.from(new Set(ufs));
-  }, [selecionado]);
 
   return (
     <div className="grid gap-4 lg:grid-cols-[1fr_2fr]">
@@ -35,15 +24,19 @@ export function ProtocoloEMapa({
           Protocolo aberto pleno, por família
         </h3>
         <p className="mt-1 text-xs text-ink-faint">
-          clique num protocolo pra destacar no mapa
+          clique num protocolo pra ver os editais lá embaixo
         </p>
         <div className="mt-4 space-y-3">
           {protocolos.map((p) => {
-            const isAtivo = p.protocolo === ativo;
+            const isAtivo = selecao?.label === p.protocolo;
             return (
               <button
                 key={p.protocolo}
-                onClick={() => setAtivo(isAtivo ? null : p.protocolo)}
+                onClick={() =>
+                  selecionar(
+                    isAtivo ? null : { label: p.protocolo, editalSlugs: p.editalSlugs }
+                  )
+                }
                 className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors ${
                   isAtivo ? "bg-signal-red-tint" : "hover:bg-surface-sunken"
                 }`}
@@ -70,12 +63,7 @@ export function ProtocoloEMapa({
         </div>
       </div>
 
-      <BrazilMap
-        layers={mapLayers}
-        editalSlugsByUf={editalSlugsByUf}
-        highlight={selecionado ? { label: selecionado.protocolo, ufs: highlightUfs } : null}
-        onClearHighlight={() => setAtivo(null)}
-      />
+      <BrazilMap layers={mapLayers} editalSlugsByUf={editalSlugsByUf} />
     </div>
   );
 }

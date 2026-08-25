@@ -1,16 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-} from "react-simple-maps";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { geoMercator } from "d3-geo";
 import brGeo from "@/data/br-states.geo.json";
 import { IBGE_CODE_TO_UF } from "@/lib/br-uf-codes";
-import { getEdital } from "@/lib/data";
+import { useSelecaoEditais } from "./SelecaoEditaisContext";
 
 type GeoFeature = { properties: { codarea: string }; rsmKey: string };
 
@@ -27,25 +22,29 @@ export type MapLayer = {
 export function BrazilMap({
   layers,
   editalSlugsByUf,
-  highlight,
-  onClearHighlight,
 }: {
   layers: MapLayer[];
   editalSlugsByUf: Record<string, string[]>;
-  /** Quando setado, ignora as layers e só pinta os UFs da lista (uso: filtro cruzado de outro gráfico, ex. protocolo). */
-  highlight?: { label: string; ufs: string[] } | null;
-  onClearHighlight?: () => void;
 }) {
   const [activeLayerId, setActiveLayerId] = useState(layers[0].id);
-  const [selectedUf, setSelectedUf] = useState<string | null>(null);
   const [hoveredUf, setHoveredUf] = useState<string | null>(null);
+  const { selecao, selecionar } = useSelecaoEditais();
 
   const activeLayer = layers.find((l) => l.id === activeLayerId) ?? layers[0];
 
+  // Quando qualquer gráfico da página tem uma seleção ativa (não só o mapa),
+  // destaca os estados que têm pelo menos um edital dessa seleção.
+  const highlightUfs = useMemo(() => {
+    if (!selecao) return null;
+    return Object.entries(editalSlugsByUf)
+      .filter(([, slugs]) => slugs.some((s) => selecao.editalSlugs.includes(s)))
+      .map(([uf]) => uf);
+  }, [selecao, editalSlugsByUf]);
+
   const colorFor = useMemo(() => {
     return (uf: string) => {
-      if (highlight) {
-        return highlight.ufs.includes(uf)
+      if (highlightUfs) {
+        return highlightUfs.includes(uf)
           ? "var(--signal-red)"
           : "var(--surface-sunken)";
       }
@@ -54,9 +53,7 @@ export function BrazilMap({
       const t = Math.min(value / activeLayer.max, 1);
       return mixColor(activeLayer.colorFrom, activeLayer.colorTo, t);
     };
-  }, [activeLayer, highlight]);
-
-  const selectedSlugs = selectedUf ? editalSlugsByUf[selectedUf] ?? [] : [];
+  }, [activeLayer, highlightUfs]);
 
   const projection = useMemo(
     () =>
@@ -75,12 +72,12 @@ export function BrazilMap({
         <h3 className="font-display text-sm font-semibold text-ink">
           Onde isso acontece
         </h3>
-        {highlight ? (
+        {selecao ? (
           <button
-            onClick={onClearHighlight}
+            onClick={() => selecionar(null)}
             className="flex items-center gap-1.5 rounded-full bg-signal-red-tint px-3 py-1.5 text-xs font-semibold text-signal-red"
           >
-            Filtro: {highlight.label} ✕
+            Filtro: {selecao.label} ✕
           </button>
         ) : (
           <div className="flex gap-1 rounded-full bg-surface-sunken p-1">
@@ -101,119 +98,84 @@ export function BrazilMap({
         )}
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-[1.4fr_1fr]">
-        <div className="relative">
-          <ComposableMap
-            // @types/react-simple-maps tipa `projection` como uma factory
-            // (w,h)=>GeoProjection, mas o runtime da lib aceita uma instância
-            // de projeção d3 já pronta (é assim que o próprio código-fonte
-            // trata: `typeof projection === "function" ? projection : ...`).
-            // fitSize precisa da instância já calculada, não de uma factory.
-            projection={projection as unknown as string}
-            width={480}
-            height={480}
-            style={{ width: "100%", height: "auto" }}
-          >
-            <Geographies geography={brGeo}>
-              {({ geographies }: { geographies: GeoFeature[] }) =>
-                geographies.map((geo) => {
-                  const uf = IBGE_CODE_TO_UF[geo.properties.codarea];
-                  const hasData = Boolean(editalSlugsByUf[uf]?.length);
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      onMouseEnter={() => setHoveredUf(uf)}
-                      onMouseLeave={() => setHoveredUf(null)}
-                      onClick={() => hasData && setSelectedUf(uf)}
-                      style={{
-                        default: {
-                          fill: colorFor(uf),
-                          stroke: "var(--bg)",
-                          strokeWidth: 1,
-                          outline: "none",
-                          cursor: hasData ? "pointer" : "default",
-                        },
-                        hover: {
-                          fill: hasData ? "var(--signal-red-dark)" : colorFor(uf),
-                          stroke: "var(--bg)",
-                          strokeWidth: 1,
-                          outline: "none",
-                          cursor: hasData ? "pointer" : "default",
-                        },
-                        pressed: {
-                          fill: "var(--signal-red-dark)",
-                          stroke: "var(--bg)",
-                          strokeWidth: 1,
-                          outline: "none",
-                        },
-                      }}
-                    />
-                  );
-                })
-              }
-            </Geographies>
-          </ComposableMap>
+      <div className="relative mx-auto mt-4 max-w-[420px]">
+        <ComposableMap
+          // @types/react-simple-maps tipa `projection` como uma factory
+          // (w,h)=>GeoProjection, mas o runtime da lib aceita uma instância
+          // de projeção d3 já pronta (é assim que o próprio código-fonte
+          // trata: `typeof projection === "function" ? projection : ...`).
+          // fitSize precisa da instância já calculada, não de uma factory.
+          projection={projection as unknown as string}
+          width={480}
+          height={480}
+          style={{ width: "100%", height: "auto" }}
+        >
+          <Geographies geography={brGeo}>
+            {({ geographies }: { geographies: GeoFeature[] }) =>
+              geographies.map((geo) => {
+                const uf = IBGE_CODE_TO_UF[geo.properties.codarea];
+                const slugs = editalSlugsByUf[uf] ?? [];
+                const hasData = slugs.length > 0;
+                const isSelected = selecao?.label === uf;
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    onMouseEnter={() => setHoveredUf(uf)}
+                    onMouseLeave={() => setHoveredUf(null)}
+                    onClick={() =>
+                      hasData &&
+                      selecionar(isSelected ? null : { label: uf, editalSlugs: slugs })
+                    }
+                    style={{
+                      default: {
+                        fill: colorFor(uf),
+                        stroke: "var(--bg)",
+                        strokeWidth: 1,
+                        outline: "none",
+                        cursor: hasData ? "pointer" : "default",
+                      },
+                      hover: {
+                        fill: hasData ? "var(--signal-red-dark)" : colorFor(uf),
+                        stroke: "var(--bg)",
+                        strokeWidth: 1,
+                        outline: "none",
+                        cursor: hasData ? "pointer" : "default",
+                      },
+                      pressed: {
+                        fill: "var(--signal-red-dark)",
+                        stroke: "var(--bg)",
+                        strokeWidth: 1,
+                        outline: "none",
+                      },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+        </ComposableMap>
 
-          {hoveredUf && (
-            <div className="pointer-events-none absolute left-2 top-2 rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-white shadow-lg">
-              {hoveredUf} · {activeLayer.values[hoveredUf] ?? 0}
-              {activeLayer.unit ?? ""}
-            </div>
-          )}
-
-          <div className="mt-2 flex items-center gap-2 text-[11px] text-ink-faint">
-            <span>0{activeLayer.unit ?? ""}</span>
-            <span
-              className="h-2 flex-1 rounded-full"
-              style={{
-                background: `linear-gradient(to right, ${activeLayer.colorFrom}, ${activeLayer.colorTo})`,
-              }}
-            />
-            <span>
-              {activeLayer.max}
-              {activeLayer.unit ?? ""}
-            </span>
+        {hoveredUf && (
+          <div className="pointer-events-none absolute left-2 top-2 rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+            {hoveredUf} · {activeLayer.values[hoveredUf] ?? 0}
+            {activeLayer.unit ?? ""}
           </div>
-        </div>
+        )}
+      </div>
 
-        <div>
-          {selectedUf ? (
-            <div>
-              <div className="flex items-center justify-between">
-                <p className="text-xs font-semibold text-ink-faint">
-                  Editais — {selectedUf}
-                </p>
-                <button
-                  onClick={() => setSelectedUf(null)}
-                  className="text-xs text-ink-faint hover:text-ink"
-                >
-                  limpar
-                </button>
-              </div>
-              <ul className="mt-2 max-h-[380px] space-y-1.5 overflow-y-auto">
-                {selectedSlugs.map((slug) => {
-                  const edital = getEdital(slug);
-                  if (!edital) return null;
-                  return (
-                    <li key={slug}>
-                      <Link
-                        href={`/editais/${encodeURIComponent(edital.slug)}`}
-                        className="block rounded-xl bg-surface-sunken px-3 py-2 text-sm font-medium text-ink hover:underline"
-                      >
-                        {edital.cidade}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : (
-            <p className="text-sm text-ink-muted">
-              Clique num estado colorido pra ver os editais de lá.
-            </p>
-          )}
-        </div>
+      <div className="mx-auto mt-2 flex max-w-[420px] items-center gap-2 text-[11px] text-ink-faint">
+        <span>0{activeLayer.unit ?? ""}</span>
+        <span
+          className="h-2 flex-1 rounded-full"
+          style={{
+            background: `linear-gradient(to right, ${activeLayer.colorFrom}, ${activeLayer.colorTo})`,
+          }}
+        />
+        <span>
+          {activeLayer.max}
+          {activeLayer.unit ?? ""}
+        </span>
       </div>
     </div>
   );

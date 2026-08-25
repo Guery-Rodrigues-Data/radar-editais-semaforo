@@ -10,10 +10,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const VAULT_ROOT = path.resolve(__dirname, "..", "..");
 const POR_EDITAL_DIR = path.join(VAULT_ROOT, "Análise", "Por Edital");
 const TEMAS_DIR = path.join(VAULT_ROOT, "Análise", "Temas");
+const EDITAIS_DIR = path.join(VAULT_ROOT, "Editais");
 const OUT_DIR = path.join(__dirname, "..", "src", "data");
 
 function slugify(filename) {
   return filename.replace(/^!/, "").replace(/\.md$/, "");
+}
+
+// A nota de análise (`Por Edital/AN_*.md`) não guarda `ano` no próprio
+// frontmatter — só o edital bruto em `Editais/*.md` tem. Resolve via o
+// wikilink `edital: "[[Nome Do Arquivo]]"` de volta pro arquivo cru.
+function resolveAno(editalRef) {
+  if (!editalRef) return null;
+  const m = editalRef.match(/^\[\[(.+)\]\]$/);
+  if (!m) return null;
+  const filePath = path.join(EDITAIS_DIR, `${m[1]}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  const { data } = matter(fs.readFileSync(filePath, "utf-8"));
+  return typeof data.ano === "number" ? data.ano : null;
 }
 
 function stripCallouts(body) {
@@ -53,6 +67,7 @@ function parseEditalFile(fullPath, filename) {
     pendingReview: filename.startsWith("!"),
     cidade: data.cidade ?? null,
     uf: data.uf ?? null,
+    ano: resolveAno(data.edital ?? null),
     temaPrincipal: data.tema_principal ?? null,
     tags: data.tags ?? [],
     revisadoGuery: data.revisado_guery ?? null,

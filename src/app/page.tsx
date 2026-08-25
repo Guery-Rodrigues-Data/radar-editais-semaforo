@@ -5,6 +5,8 @@ import { BarPanel } from "@/components/BarPanel";
 import { DonutChart } from "@/components/DonutChart";
 import { AchadoChip } from "@/components/AchadoChip";
 import { ProtocoloEMapa } from "@/components/ProtocoloEMapa";
+import { EditalTable } from "@/components/EditalTable";
+import { SelecaoEditaisProvider } from "@/components/SelecaoEditaisContext";
 import { achados, curatedStats, protocoloPlenoChart } from "@/data/achados";
 import {
   editais,
@@ -94,97 +96,106 @@ export default function Home() {
             />
           </div>
 
-          {/* Mapa + protocolo */}
-          <div className="mt-4">
-            <ProtocoloEMapa
-              protocolos={protocoloPlenoChart}
-              mapLayers={mapLayers}
-              editalSlugsByUf={editalSlugsByUf}
-            />
-          </div>
+          <SelecaoEditaisProvider>
+            {/* Mapa + protocolo */}
+            <div className="mt-4">
+              <ProtocoloEMapa
+                protocolos={protocoloPlenoChart}
+                mapLayers={mapLayers}
+                editalSlugsByUf={editalSlugsByUf}
+              />
+            </div>
 
-          {/* Charts */}
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
-            <DonutChart
-              title="Maturidade da central"
-              centerValue={String(editais.length)}
-              centerLabel="editais"
-              data={maturidade.map((d) => ({
-                label: d.maturidade,
-                value: d.total,
-                color:
-                  d.maturidade === "Madura"
-                    ? "var(--signal-green)"
-                    : d.maturidade === "Nova"
-                      ? "var(--signal-amber)"
-                      : "var(--ink-faint)",
-              }))}
-            />
-            <BarPanel
-              title="Editais por estado (top 8)"
-              data={porUf.map((d) => ({
-                label: d.uf,
-                value: d.total,
-                editalSlugs: d.editalSlugs,
-              }))}
-            />
-          </div>
+            {/* Charts */}
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              <DonutChart
+                title="Maturidade da central"
+                centerValue={String(editais.length)}
+                centerLabel="editais"
+                data={maturidade.map((d) => ({
+                  label: d.maturidade,
+                  value: d.total,
+                  color:
+                    d.maturidade === "Madura"
+                      ? "var(--signal-green)"
+                      : d.maturidade === "Nova"
+                        ? "var(--signal-amber)"
+                        : "var(--ink-faint)",
+                }))}
+              />
+              <BarPanel
+                title="Editais por estado (top 8)"
+                data={porUf.map((d) => ({
+                  label: d.uf,
+                  value: d.total,
+                  editalSlugs: d.editalSlugs,
+                }))}
+              />
+            </div>
 
-          <div className="mt-4">
-            <BarPanel
-              title="Top 6 requisitos mais pedidos"
-              data={topBacklog}
-              height={260}
-              labelWidth={260}
-            />
-          </div>
+            <div className="mt-4">
+              <BarPanel
+                title="Top 6 requisitos mais pedidos"
+                data={topBacklog}
+                height={260}
+                labelWidth={260}
+              />
+            </div>
 
-          {/* Achados + links, lado a lado */}
-          <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-            <div className="panel p-6">
-              <div className="flex items-baseline justify-between">
-                <h2 className="font-display text-sm font-semibold text-ink">
-                  Achados — só aparecem cruzando vários editais
-                </h2>
+            {/* Achados + links, lado a lado */}
+            <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+              <div className="panel p-6">
+                <div className="flex items-baseline justify-between">
+                  <h2 className="font-display text-sm font-semibold text-ink">
+                    Achados — só aparecem cruzando vários editais
+                  </h2>
+                  <Link
+                    href="/achados"
+                    className="text-xs font-medium text-ink-faint hover:text-ink"
+                  >
+                    ver todos
+                  </Link>
+                </div>
+                <div className="mt-2">
+                  {achados.map((achado) => (
+                    <AchadoChip key={achado.id} achado={achado} />
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
                 <Link
-                  href="/achados"
-                  className="text-xs font-medium text-ink-faint hover:text-ink"
+                  href="/backlog"
+                  className="panel flex-1 p-6 transition-transform hover:-translate-y-0.5"
                 >
-                  ver todos
+                  <span className="font-display text-2xl font-semibold text-ink">
+                    {backlog.length}
+                  </span>
+                  <p className="mt-1 text-sm text-ink-muted">
+                    requisitos candidatos a backlog, por frequência
+                  </p>
+                </Link>
+                <Link
+                  href="/editais"
+                  className="panel flex-1 p-6 transition-transform hover:-translate-y-0.5"
+                >
+                  <span className="font-display text-2xl font-semibold text-ink">
+                    {editais.length}
+                  </span>
+                  <p className="mt-1 text-sm text-ink-muted">
+                    editais explorados um por um, com filtro
+                  </p>
                 </Link>
               </div>
-              <div className="mt-2">
-                {achados.map((achado) => (
-                  <AchadoChip key={achado.id} achado={achado} />
-                ))}
-              </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <Link
-                href="/backlog"
-                className="panel flex-1 p-6 transition-transform hover:-translate-y-0.5"
-              >
-                <span className="font-display text-2xl font-semibold text-ink">
-                  {backlog.length}
-                </span>
-                <p className="mt-1 text-sm text-ink-muted">
-                  requisitos candidatos a backlog, por frequência
-                </p>
-              </Link>
-              <Link
-                href="/editais"
-                className="panel flex-1 p-6 transition-transform hover:-translate-y-0.5"
-              >
-                <span className="font-display text-2xl font-semibold text-ink">
-                  {editais.length}
-                </span>
-                <p className="mt-1 text-sm text-ink-muted">
-                  editais explorados um por um, com filtro
-                </p>
-              </Link>
+            {/* Lista única de editais — alimentada pelo clique em qualquer
+                gráfico acima (mapa, protocolo, barra), em vez de cada card
+                ter sua própria lista embutida. */}
+            <div className="mt-4">
+              <EditalTable />
             </div>
-          </div>
+          </SelecaoEditaisProvider>
 
           <p className="mt-8 max-w-2xl text-xs leading-relaxed text-ink-faint">
             Versão prévia (25/08/2026) — amostra em crescimento, {editais.length}

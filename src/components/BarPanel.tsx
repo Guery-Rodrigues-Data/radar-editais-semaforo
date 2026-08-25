@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import {
   Bar,
   BarChart,
@@ -12,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { getEdital } from "@/lib/data";
+import { useSelecaoEditais } from "./SelecaoEditaisContext";
 
 type Datum = {
   label: string;
@@ -36,11 +34,10 @@ export function BarPanel({
   suffix?: string;
   labelWidth?: number;
 }) {
-  const [open, setOpen] = useState<string | null>(null);
+  const { selecao, selecionar } = useSelecaoEditais();
   const rowHeight = 38;
   const chartHeight = height ?? Math.max(data.length * rowHeight + 24, 120);
   const clickable = data.some((d) => d.editalSlugs?.length);
-  const openDatum = data.find((d) => d.label === open);
 
   return (
     <div className="panel p-6">
@@ -62,7 +59,11 @@ export function BarPanel({
               if (typeof label !== "string") return;
               const datum = data.find((d) => d.label === label);
               if (!datum?.editalSlugs?.length) return;
-              setOpen((prev) => (prev === label ? null : label));
+              selecionar(
+                selecao?.label === label
+                  ? null
+                  : { label, editalSlugs: datum.editalSlugs }
+              );
             }}
           >
             <XAxis type="number" hide domain={[0, "dataMax"]} />
@@ -112,30 +113,6 @@ export function BarPanel({
           </BarChart>
         </ResponsiveContainer>
       </div>
-
-      {openDatum?.editalSlugs && (
-        <div className="mt-2 rounded-2xl bg-surface-sunken p-4">
-          <p className="text-xs font-semibold text-ink-faint">
-            Editais — {openDatum.label}
-          </p>
-          <ul className="mt-2 space-y-1.5">
-            {openDatum.editalSlugs.map((slug) => {
-              const edital = getEdital(slug);
-              if (!edital) return null;
-              return (
-                <li key={slug}>
-                  <Link
-                    href={`/editais/${encodeURIComponent(edital.slug)}`}
-                    className="text-sm font-medium text-ink hover:underline"
-                  >
-                    {edital.cidade} · {edital.uf}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@
     "pendingReview": false,
     "cidade": "Alfenas",
     "uf": "MG",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/integracao-waze",
@@ -28,6 +29,7 @@
     "pendingReview": false,
     "cidade": "Balsas",
     "uf": "MA",
+    "ano": 2023,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp"
@@ -47,6 +49,7 @@
     "pendingReview": false,
     "cidade": "Boa Vista",
     "uf": "RR",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp"
@@ -66,6 +69,7 @@
     "pendingReview": false,
     "cidade": "Criciúma",
     "uf": "SC",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/integracao-waze",
@@ -87,6 +91,7 @@
     "pendingReview": false,
     "cidade": "Cubatão",
     "uf": "SP",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/utmc",
@@ -109,6 +114,7 @@
     "pendingReview": true,
     "cidade": "Cuiabá",
     "uf": "MT",
+    "ano": 2023,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/ntcip",
@@ -132,6 +138,7 @@
     "pendingReview": false,
     "cidade": "Cuiabá",
     "uf": "MT",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/ntcip",
@@ -156,6 +163,7 @@
     "pendingReview": false,
     "cidade": "Dourados",
     "uf": "MS",
+    "ano": 2021,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/notificacao-mensageria",
@@ -179,6 +187,7 @@
     "pendingReview": false,
     "cidade": "Duque de Caxias",
     "uf": "RJ",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/pregao-eletronico",
@@ -199,6 +208,7 @@
     "pendingReview": true,
     "cidade": "Escada",
     "uf": "PE",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/pregao-eletronico",
@@ -220,6 +230,7 @@
     "pendingReview": false,
     "cidade": "Farroupilha",
     "uf": "RS",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/une-135401-4",
@@ -251,6 +262,7 @@
     "pendingReview": false,
     "cidade": "Fortaleza",
     "uf": "CE",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/utmc",
@@ -273,6 +285,7 @@
     "pendingReview": false,
     "cidade": "Foz do Iguaçu",
     "uf": "PR",
+    "ano": 2022,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/utmc",
@@ -296,6 +309,7 @@
     "pendingReview": true,
     "cidade": "Guaíba",
     "uf": "RS",
+    "ano": 2022,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -316,6 +330,7 @@
     "pendingReview": false,
     "cidade": "Indaiatuba",
     "uf": "SP",
+    "ano": 2025,
     "temaPrincipal": "plataforma-dados-analiticos",
     "tags": [
       "protocolo/utmc",
@@ -340,6 +355,7 @@
     "pendingReview": false,
     "cidade": "Jaraguá do Sul",
     "uf": "SC",
+    "ano": 2023,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -360,6 +376,7 @@
     "pendingReview": true,
     "cidade": "Jequié",
     "uf": "BA",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -380,6 +397,7 @@
     "pendingReview": true,
     "cidade": "Lajeado",
     "uf": "RS",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -400,6 +418,7 @@
     "pendingReview": false,
     "cidade": "Londrina",
     "uf": "PR",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/utmc",
@@ -425,6 +444,7 @@
     "pendingReview": false,
     "cidade": "Morrinhos",
     "uf": "GO",
+    "ano": 2023,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -445,6 +465,7 @@
     "pendingReview": false,
     "cidade": "Paranaguá",
     "uf": "PR",
+    "ano": 2021,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/une-135401-4",
@@ -472,6 +493,7 @@
     "pendingReview": true,
     "cidade": "Poço Fundo",
     "uf": "MG",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -492,6 +514,7 @@
     "pendingReview": true,
     "cidade": "Ribeirão Preto",
     "uf": "SP",
+    "ano": 2022,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/ntcip",
@@ -517,6 +540,7 @@
     "pendingReview": false,
     "cidade": "Ribeirão Preto",
     "uf": "SP",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/une-135401-4",
@@ -540,6 +564,7 @@
     "pendingReview": false,
     "cidade": "Rio do Sul",
     "uf": "SC",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/pregao-eletronico",
@@ -561,6 +586,7 @@
     "pendingReview": false,
     "cidade": "Salvador (estadual)",
     "uf": "BA",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp"
@@ -580,6 +606,7 @@
     "pendingReview": true,
     "cidade": "Santana de Parnaíba",
     "uf": "SP",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/pregao-eletronico",
@@ -601,6 +628,7 @@
     "pendingReview": false,
     "cidade": "Santarém",
     "uf": "PA",
+    "ano": 2024,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/notificacao-mensageria",
@@ -622,6 +650,7 @@
     "pendingReview": false,
     "cidade": "Santo André",
     "uf": "SP",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/integracao-waze",
@@ -646,6 +675,7 @@
     "pendingReview": true,
     "cidade": "São Bernardo do Campo",
     "uf": "SP",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/plataforma-dados-ia",
@@ -672,6 +702,7 @@
     "pendingReview": true,
     "cidade": "São João da Boa Vista",
     "uf": "SP",
+    "ano": 2025,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/srp",
@@ -692,6 +723,7 @@
     "pendingReview": true,
     "cidade": "São Paulo (estadual)",
     "uf": "SP",
+    "ano": 2023,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "protocolo/utmc",
@@ -714,6 +746,7 @@
     "pendingReview": false,
     "cidade": "Serra Talhada",
     "uf": "PE",
+    "ano": 2023,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/pregao-eletronico",
@@ -736,6 +769,7 @@
     "pendingReview": false,
     "cidade": "Várzea Grande",
     "uf": "MT",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "contratacao/servico-continuado",
@@ -757,6 +791,7 @@
     "pendingReview": false,
     "cidade": "Vitória",
     "uf": "ES",
+    "ano": null,
     "temaPrincipal": "integracao-software-central",
     "tags": [
       "modulo/simulacao-trafego",

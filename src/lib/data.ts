@@ -7,6 +7,7 @@ export type Edital = {
   pendingReview: boolean;
   cidade: string | null;
   uf: string | null;
+  ano: number | null;
   temaPrincipal: string | null;
   tags: string[];
   revisadoGuery: boolean | null;
