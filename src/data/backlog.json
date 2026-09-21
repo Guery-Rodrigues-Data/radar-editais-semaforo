@@ -36,10 +36,10 @@
   },
   {
     "requisito": "Protocolo aberto de integração (controlador↔central ou subsistema)",
-    "apareceEm": "8/34 pleno (Cuiabá, Foz, Farroupilha, Ribeirão Preto, Fortaleza, Paranaguá, Cubatão, **DETRAN/SP** — UTMC2/NTCIP com cláusula \"proprietário só vale com abertura de software\") + 3/34 parcial/ambíguo (Londrina e Indaiatuba, só no No-Break; **Santana de Parnaíba** — \"protocolo aberto e público\" sem nomear padrão)",
-    "count": 8,
-    "total": 34,
-    "observacao": "Ver [[Interoperabilidade e Protocolos Abertos]] — UTMC2 lidera com 4 casos plenos agora, à frente de UNE 135401-4 (2). Boa parte dos editais \"piso\" (Guaíba, Jequié, Lajeado) não exige protocolo nomeado — inclui **Jaraguá do Sul**, que tem protocolo próprio (ANTARES) documentado mas não é padrão multi-fabricante"
+    "apareceEm": "10/45 pleno (Cuiabá, Foz, Farroupilha, Ribeirão Preto, Fortaleza, Paranaguá, Cubatão, DETRAN/SP, **Sertãozinho** e **Jaboticabal-PE57** — os 2 últimos, 5º e 6º casos plenos de UTMC) + 3/45 parcial/ambíguo (Londrina e Indaiatuba, só no No-Break; Santana de Parnaíba)",
+    "count": 10,
+    "total": 45,
+    "observacao": "Ver [[Interoperabilidade e Protocolos Abertos]] — UTMC lidera disparado com 6 casos plenos, à frente de UNE 135401-4 (2). Boa parte dos editais \"piso\" não exige protocolo nomeado"
   },
   {
     "requisito": "Redundância de infraestrutura (servidor, nobreak, link de dados)",
@@ -78,10 +78,10 @@
   },
   {
     "requisito": "Sistema de Gestão para Operação e Manutenção separado do controle de tráfego (OS, patrimônio, atendimento)",
-    "apareceEm": "4/34 (**Escada**, **Santana de Parnaíba**, **BA-Jequié** — item de patrimônio/inventário na central, **Ribeirão Preto 2022** — Plataforma de Integração com módulos separados)",
-    "count": 4,
-    "total": 34,
-    "observacao": "\"Central\" nesse mercado tende a ser um conjunto de sistemas distintos (controle de tráfego vs. gestão de ativos/OS), não produto monolítico — watch list, considerar promover a tag"
+    "apareceEm": "6/45 — **tag confirmada** (Escada, Santana de Parnaíba, Jequié, Ribeirão Preto 2022, **Hortolândia** e **Joinville** — os 2 últimos com \"sistema de gestão on-line\" de chamados/OS)",
+    "count": 6,
+    "total": 45,
+    "observacao": "\"Central\" nesse mercado tende a ser um conjunto de sistemas distintos (controle de tráfego vs. gestão de ativos/OS), não produto monolítico — já é padrão consolidado, ver [[Índice de Tags]]"
   },
   {
     "requisito": "Notificação de falha/status via app dedicado (mobile próprio)",
@@ -176,10 +176,38 @@
   },
   {
     "requisito": "Módulo de alerta climático/pluviométrico integrado à central",
-    "apareceEm": "3/24 (Londrina, Santo André, Alfenas)",
-    "count": 3,
-    "total": 24,
-    "observacao": "Tag confirmada — Santo André é o mais detalhado"
+    "apareceEm": "4/45 (Londrina, Santo André, Alfenas, **Mineiros**)",
+    "count": 4,
+    "total": 45,
+    "observacao": "Tag confirmada — Mineiros tem a especificação de hardware mais detalhada (comunicação 2G/3G própria do módulo)"
+  },
+  {
+    "requisito": "Cláusula de handover técnico detalhado ao fim do contrato (SO/SGBD pré-especificados, instalação no datacenter do contratante)",
+    "apareceEm": "1/45 (**Joinville**)",
+    "count": 1,
+    "total": 45,
+    "observacao": "Nível de \"anti-lock-in de infraestrutura\" acima da média do vault — watch list, forte candidata a backlog"
+  },
+  {
+    "requisito": "Protocolo aberto também em camadas auxiliares (GPS/sincronismo de rede, não só controlador↔central)",
+    "apareceEm": "1/45 (**Sertãozinho** — NMEA 0183 + NTP)",
+    "count": 1,
+    "total": 45,
+    "observacao": "Watch list"
+  },
+  {
+    "requisito": "Contrato de locação (aluguel) de equipamento, em vez de aquisição/SaaS",
+    "apareceEm": "1/45 (**DER-RJ** — fora do recorte central)",
+    "count": 1,
+    "total": 45,
+    "observacao": "Watch list"
+  },
+  {
+    "requisito": "Edital sem central alguma especificada (nem como item de planilha)",
+    "apareceEm": "2/45 (**Mirassol**, **Mogi Mirim**)",
+    "count": 2,
+    "total": 45,
+    "observacao": "Variante mais rasa que o \"piso de catálogo\" (Guaíba/Jequié/Lajeado) — watch list"
   },
   {
     "requisito": "Concessão/PPP de longuíssimo prazo (iluminação pública + semáforo no mesmo contrato)",
@@ -193,7 +221,7 @@
     "apareceEm": "2/24 (Alfenas, Dourados — mesmos números, mesmo texto)",
     "count": 2,
     "total": 24,
-    "observacao": "Reforça o achado de template \"OTTO\"/\"GS\" — ver \"Quem pede bem\""
+    "observacao": "Reforça o achado de template \"OTTO\"/\"GS\" (Newtesc) — ver \"Quem pede bem\""
   },
   {
     "requisito": "Cláusula de locação com transferência de propriedade após renovação de longo prazo",

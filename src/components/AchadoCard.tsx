@@ -24,7 +24,7 @@ export function AchadoCard({ achado }: { achado: Achado }) {
           {achado.label}
         </span>
       </div>
-      <h3 className="font-display text-lg font-semibold leading-snug text-ink">
+      <h3 className="font-display text-xl font-semibold leading-snug text-ink">
         {achado.title}
       </h3>
       <p className="text-sm leading-relaxed text-ink-muted">{achado.body}</p>

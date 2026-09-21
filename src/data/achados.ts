@@ -23,40 +23,63 @@ export const achados: Achado[] = [
   {
     id: "central-otto",
     label: "Concorrente identificado",
-    title: "A “Central OTTO” aparece em 3 estados diferentes",
-    body: "Santo André (SP), Alfenas (MG) e Dourados (MS) pedem a mesma central, com o mesmo texto de especificação quase palavra por palavra — até o mesmo SLA. Dourados fecha a dúvida: a central já está instalada lá, com o nome “CENTRAL OTTO”.",
+    title: "A “Central OTTO” (Newtesc) aparece em 4 editais de 3 estados",
+    body: "Santo André (SP), Alfenas e Ipatinga (MG) e Dourados (MS) pedem a mesma central, com o mesmo texto de especificação quase palavra por palavra — até o mesmo SLA. Dourados fecha a dúvida: a central já está instalada lá, com o nome “CENTRAL OTTO”, produto da Newtesc.",
     signal: null,
-    editalSlugs: ["AN_SP_Santo-Andre", "AN_MG_Alfenas", "AN_MS_Dourados"],
+    editalSlugs: [
+      "AN_SP_Santo-Andre",
+      "AN_MG_Alfenas",
+      "AN_MG_Ipatinga",
+      "AN_MS_Dourados",
+    ],
     featured: true,
   },
   {
     id: "utmc2-lider",
     label: "Padrão técnico",
-    title: "UTMC2 é o protocolo mais exigido — e citam a mesma norma, palavra por palavra",
-    body: "4 editais de estados diferentes exigem esse protocolo britânico pra central falar com o controlador. Dois deles citam a mesma especificação técnica exata (UTMC TS003_003:2009) — sinal de que é literalmente o texto de referência que circula no mercado.",
+    title: "UTMC2 é o protocolo aberto mais exigido — 10 casos plenos, disparado",
+    body: "Dez editais de estados diferentes exigem esse protocolo britânico pra central falar com o controlador — mais que o dobro de qualquer outro. Alguns citam a mesma especificação técnica exata (UTMC TS003_003:2009), sinal de que é literalmente o texto de referência que circula no mercado.",
     signal: "green",
     editalSlugs: [
       "AN_PR_Foz-do-Iguacu",
       "AN_CE_Fortaleza",
       "AN_SP_Cubatao",
       "!AN_SP_Detran",
+      "!AN_SP_Sertaozinho",
+      "AN_SP_Jaboticabal-PE57",
+      "!AN_PB_Joao-Pessoa",
+      "!AN_PR_Corbelia",
+      "!AN_SP_Pilar-do-Sul",
+      "!AN_SP_Jaboticabal-PE7",
     ],
   },
   {
     id: "central-prateleira",
     label: "Segmento de mercado",
     title: "Em município menor, a central vira item de planilha",
-    body: "Guaíba, Jequié e Lajeado compram a central junto com o controlador, sem nenhuma especificação de software — e dois deles evitam dividir o contrato justamente pra não arriscar incompatibilidade entre fornecedores diferentes.",
+    body: "Guaíba, Jequié, Lajeado, Corbélia, Pilar do Sul e Rio do Sul compram a central junto com o controlador, sem nenhuma especificação de software — alguns pagam valores altos mesmo assim (Pilar do Sul: R$ 135 mil; Rio do Sul: R$ 247 mil) e dois deles evitam dividir o contrato justamente pra não arriscar incompatibilidade entre fornecedores diferentes.",
     signal: "amber",
-    editalSlugs: ["!AN_RS_Guaiba", "!AN_BA_Jequie", "!AN_RS_Lajeado"],
+    editalSlugs: [
+      "!AN_RS_Guaiba",
+      "!AN_BA_Jequie",
+      "!AN_RS_Lajeado",
+      "!AN_PR_Corbelia",
+      "!AN_SP_Pilar-do-Sul",
+      "!AN_SC_Rio-do-Sul-2025",
+    ],
   },
   {
     id: "ia-llm",
     label: "Fronteira do mercado",
-    title: "3 editais já pedem consulta em linguagem natural sobre dado de trânsito",
-    body: "Indaiatuba foi o primeiro; Santo André e Alfenas pediram quase o mesmo pacote depois (ML/BI, LLM, integração com Waze). É o requisito mais avançado que já vimos — e o que mais conecta com uma futura inicativa de IA.",
+    title: "4 editais já pedem consulta em linguagem natural sobre dado de trânsito",
+    body: "Indaiatuba foi o primeiro; Santo André, Alfenas e São Bernardo do Campo pediram quase o mesmo pacote depois (ML/BI, LLM, integração com Waze). É o requisito mais avançado que já vimos — e o que mais conecta com uma futura iniciativa de IA.",
     signal: null,
-    editalSlugs: ["AN_SP_Indaiatuba", "AN_SP_Santo-Andre", "AN_MG_Alfenas"],
+    editalSlugs: [
+      "AN_SP_Indaiatuba",
+      "AN_SP_Santo-Andre",
+      "AN_MG_Alfenas",
+      "!AN_SP_Sao-Bernardo-do-Campo",
+    ],
   },
   {
     id: "minuta-estadual",
@@ -71,11 +94,11 @@ export const achados: Achado[] = [
 // Números verificados manualmente (ver nota de rodapé no lib/data.ts sobre
 // a diferença entre "pleno" e apenas citado/parcial).
 export const curatedStats = {
-  totalVault: 121, // total de editais/documentos catalogados em Editais/00 - Indice.md
-  protocoloAbertoPleno: 8,
-  protocoloAbertoTotal: 34,
-  utmc2Pleno: 4,
-  fornecedoresIdentificados: 3, // OTTO, ANTARES, CTAFOR/SCOOT
+  totalVault: 107, // total de arquivos únicos após dedup de 2ª via/anexo (17/09/2026; era 121 antes da correção)
+  protocoloAbertoPleno: 13, // UTMC2 10 + UNE 135401-4 2 + NTCIP 1 (ver Interoperabilidade e Protocolos Abertos)
+  protocoloAbertoTotal: 50, // editais que incluem central (conteudo=central), atualizado 17/09/2026 (era 40)
+  utmc2Pleno: 10,
+  fornecedoresIdentificados: 3, // OTTO/Newtesc, ANTARES/Dataprom (próprio), CTAFOR/SCOOT
 };
 
 // Contagem de protocolo "pleno" por família — conferida manualmente na nota
@@ -85,18 +108,24 @@ export const curatedStats = {
 export const protocoloPlenoChart = [
   {
     protocolo: "UTMC2",
-    casos: 4,
+    casos: 10,
     editalSlugs: [
       "AN_PR_Foz-do-Iguacu",
       "AN_CE_Fortaleza",
       "AN_SP_Cubatao",
       "!AN_SP_Detran",
+      "!AN_SP_Sertaozinho",
+      "AN_SP_Jaboticabal-PE57",
+      "!AN_PB_Joao-Pessoa",
+      "!AN_PR_Corbelia",
+      "!AN_SP_Pilar-do-Sul",
+      "!AN_SP_Jaboticabal-PE7",
     ],
   },
   {
     protocolo: "UNE 135401-4",
-    casos: 3,
-    editalSlugs: ["AN_RS_Farroupilha", "AN_SP_Ribeirao-Preto", "AN_PR_Paranagua"],
+    casos: 2,
+    editalSlugs: ["AN_SP_Ribeirao-Preto", "AN_PR_Paranagua"],
   },
   { protocolo: "NTCIP", casos: 1, editalSlugs: ["AN_MT_Cuiaba"] },
 ];

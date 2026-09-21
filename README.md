@@ -13,11 +13,22 @@ Guery e pra quem lê edital no dia a dia.
 
 - **Nível 1 — `/`**: visão geral. Hero editorial, achado em destaque, stat
   tiles, grid de achados, teasers pro backlog e pra base completa.
-- **Nível 2 — `/achados`, `/backlog`, `/editais`, `/tags/[categoria/tag]`**:
-  exploração por tema — achados individuais, tabela de candidatos a
-  backlog, tabela filtrável dos editais, editais por tag.
+- **Nível 2 — `/indice`, `/achados`, `/backlog`, `/editais`,
+  `/tags/[categoria/tag]`**: exploração por tema — índice organizado de todos
+  os editais (data, maturidade, tags + atalhos pra nota e pro PDF),
+  achados individuais, tabela de candidatos a backlog, tabela filtrável dos
+  editais, editais por tag.
 - **Nível 3 — `/editais/[slug]`**: ficha completa de um edital (mesmo
   conteúdo da nota `AN_...md` correspondente no vault).
+
+### Download do PDF original
+
+A rota `/api/editais/[slug]/pdf` lê o PDF do edital do disco e devolve pro
+navegador (link "PDF" no `/indice` e no `/editais`). O nome do arquivo vem
+do campo `pdf_original` do frontmatter da nota; a pasta vem de
+`EDITAIS_PDF_DIR` (ou de `Editais/PDF/` no vault, pros poucos PDFs que moram
+lá dentro). **Só funciona rodando o site localmente** — no deploy a pasta
+não existe e a rota responde 404 com uma explicação.
 
 ## Dados
 
@@ -64,6 +75,7 @@ Abra http://localhost:3000 — vai pedir a senha configurada em
 | --- | --- |
 | `SITE_PASSWORD` | Senha do gate de acesso (ver `/entrar`) |
 | `AUTH_SECRET` | Segredo usado pra assinar o cookie de sessão — qualquer string longa e aleatória |
+| `EDITAIS_PDF_DIR` | Pasta local com os PDFs originais dos editais (fora do repo). Só usada pela rota de download rodando local; no Vercel não precisa configurar. Default: `C:\Users\guery.braga\Documents\Editais` |
 
 Essas mesmas variáveis precisam ser configuradas em **Project Settings →
 Environment Variables** no Vercel antes do primeiro deploy.

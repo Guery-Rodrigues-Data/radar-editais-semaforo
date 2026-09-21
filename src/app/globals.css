@@ -47,9 +47,21 @@ body {
     radial-gradient(1100px 520px at 8% -8%, #fdeceb 0%, transparent 60%),
     radial-gradient(900px 480px at 100% 0%, #fbe4e2 0%, transparent 55%),
     var(--bg);
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-body);
   min-height: 100vh;
+}
+
+.page-container {
+  width: 80%;
+  margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    width: 92%;
+  }
 }
 
 .panel {

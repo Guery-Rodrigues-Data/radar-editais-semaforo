@@ -24,7 +24,7 @@ export default async function EditalPage({
     <>
       <SiteHeader />
       <main className="flex-1">
-        <div className="mx-auto max-w-3xl px-6 py-12">
+        <div className="page-container px-6 py-12">
           <Link
             href="/editais"
             className="text-xs font-medium text-ink-faint hover:text-ink"

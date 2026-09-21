@@ -9,14 +9,21 @@ import { useSelecaoEditais } from "./SelecaoEditaisContext";
 
 type GeoFeature = { properties: { codarea: string }; rsmKey: string };
 
+export type MapCategory = { id: string; label: string; color: string };
+
 export type MapLayer = {
   id: string;
   label: string;
   unit?: string; // ex.: "%"
-  values: Record<string, number>; // uf -> valor (já na escala certa, ex. 0-100 pra %)
-  max: number;
-  colorFrom: string; // cor do valor mínimo (tint claro)
-  colorTo: string; // cor do valor máximo (cor cheia)
+  // Camada de gradiente (padrão):
+  values?: Record<string, number>; // uf -> valor
+  max?: number;
+  colorFrom?: string;
+  colorTo?: string;
+  // Camada categórica: cada estado recebe a cor da sua categoria.
+  kind?: "gradient" | "categorical";
+  categoryOf?: Record<string, string>; // uf -> id da categoria
+  categories?: MapCategory[];
 };
 
 export function BrazilMap({
@@ -48,10 +55,19 @@ export function BrazilMap({
           ? "var(--signal-red)"
           : "var(--surface-sunken)";
       }
-      const value = activeLayer.values[uf] ?? 0;
+      if (activeLayer.kind === "categorical") {
+        const cat = activeLayer.categoryOf?.[uf];
+        const found = activeLayer.categories?.find((c) => c.id === cat);
+        return found?.color ?? "var(--surface-sunken)";
+      }
+      const value = activeLayer.values?.[uf] ?? 0;
       if (value <= 0) return "var(--surface-sunken)";
-      const t = Math.min(value / activeLayer.max, 1);
-      return mixColor(activeLayer.colorFrom, activeLayer.colorTo, t);
+      const t = Math.min(value / (activeLayer.max ?? 1), 1);
+      return mixColor(
+        activeLayer.colorFrom ?? "#eee",
+        activeLayer.colorTo ?? "#333",
+        t
+      );
     };
   }, [activeLayer, highlightUfs]);
 
@@ -69,7 +85,7 @@ export function BrazilMap({
   return (
     <div className="panel p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="font-display text-sm font-semibold text-ink">
+        <h3 className="font-display text-xl font-semibold text-ink">
           Onde isso acontece
         </h3>
         {selecao ? (
@@ -79,7 +95,7 @@ export function BrazilMap({
           >
             Filtro: {selecao.label} ✕
           </button>
-        ) : (
+        ) : layers.length > 1 ? (
           <div className="flex gap-1 rounded-full bg-surface-sunken p-1">
             {layers.map((layer) => (
               <button
@@ -95,10 +111,10 @@ export function BrazilMap({
               </button>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
 
-      <div className="relative mx-auto mt-4 max-w-[420px]">
+      <div className="relative mx-auto mt-4 max-w-[620px]">
         <ComposableMap
           // @types/react-simple-maps tipa `projection` como uma factory
           // (w,h)=>GeoProjection, mas o runtime da lib aceita uma instância
@@ -158,25 +174,46 @@ export function BrazilMap({
 
         {hoveredUf && (
           <div className="pointer-events-none absolute left-2 top-2 rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-white shadow-lg">
-            {hoveredUf} · {activeLayer.values[hoveredUf] ?? 0}
-            {activeLayer.unit ?? ""}
+            {activeLayer.kind === "categorical"
+              ? `${hoveredUf} · ${
+                  activeLayer.categories?.find(
+                    (c) => c.id === activeLayer.categoryOf?.[hoveredUf]
+                  )?.label ?? "—"
+                }`
+              : `${hoveredUf} · ${activeLayer.values?.[hoveredUf] ?? 0}${
+                  activeLayer.unit ?? ""
+                }`}
           </div>
         )}
       </div>
 
-      <div className="mx-auto mt-2 flex max-w-[420px] items-center gap-2 text-[11px] text-ink-faint">
-        <span>0{activeLayer.unit ?? ""}</span>
-        <span
-          className="h-2 flex-1 rounded-full"
-          style={{
-            background: `linear-gradient(to right, ${activeLayer.colorFrom}, ${activeLayer.colorTo})`,
-          }}
-        />
-        <span>
-          {activeLayer.max}
-          {activeLayer.unit ?? ""}
-        </span>
-      </div>
+      {activeLayer.kind === "categorical" ? (
+        <div className="mx-auto mt-2 flex max-w-[620px] flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-ink-faint">
+          {activeLayer.categories?.map((c) => (
+            <span key={c.id} className="flex items-center gap-1.5">
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: c.color }}
+              />
+              {c.label}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <div className="mx-auto mt-2 flex max-w-[620px] items-center gap-2 text-[11px] text-ink-faint">
+          <span>0{activeLayer.unit ?? ""}</span>
+          <span
+            className="h-2 flex-1 rounded-full"
+            style={{
+              background: `linear-gradient(to right, ${activeLayer.colorFrom}, ${activeLayer.colorTo})`,
+            }}
+          />
+          <span>
+            {activeLayer.max}
+            {activeLayer.unit ?? ""}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

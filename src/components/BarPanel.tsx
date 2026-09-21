@@ -42,7 +42,7 @@ export function BarPanel({
   return (
     <div className="panel p-6">
       <div className="flex items-baseline justify-between">
-        <h3 className="font-display text-sm font-semibold text-ink">{title}</h3>
+        <h3 className="font-display text-xl font-semibold text-ink">{title}</h3>
         {clickable && (
           <span className="text-[11px] text-ink-faint">clique numa barra</span>
         )}

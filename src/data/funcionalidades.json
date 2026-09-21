@@ -1,0 +1,1096 @@
+[
+  {
+    "funcionalidade": "Gerenciar usuários e perfis de acesso",
+    "temaSlug": "modulo/controle-acesso",
+    "total": 22,
+    "nivel": "essencial",
+    "editalSlugs": [
+      "AN_BA_Detran-Salvador",
+      "AN_CE_Fortaleza",
+      "AN_ES_Cachoeiro-de-Itapemirim",
+      "AN_ES_Vitoria",
+      "AN_GO_Morrinhos",
+      "AN_MG_Alfenas",
+      "AN_MS_Dourados",
+      "AN_MT_Varzea-Grande",
+      "AN_PA_Abaetetuba",
+      "AN_PA_Santarem",
+      "AN_PE_Escada",
+      "AN_PE_Serra-Talhada",
+      "AN_PR_Londrina",
+      "AN_PR_Paranagua",
+      "AN_RJ_Duque-de-Caxias",
+      "AN_RS_Farroupilha",
+      "AN_SC_Criciuma",
+      "AN_SP_Cubatao",
+      "AN_SP_Indaiatuba",
+      "AN_SP_Louveira",
+      "AN_SP_Ribeirao-Preto-2022",
+      "AN_SP_Santo-Andre"
+    ],
+    "detalhes": {
+      "AN_CE_Fortaleza": {
+        "resumo": "Gestão de usuários e permissões (módulo mínimo do UTC)",
+        "citacao": null
+      },
+      "AN_ES_Cachoeiro-de-Itapemirim": {
+        "resumo": "Login/Senha exclusivo do contratante, pelo menos 3 usuários no mesmo login, mínimo 2 perfis (Administrador = controle total / Operador = só monitoramento)",
+        "citacao": null
+      },
+      "AN_ES_Vitoria": {
+        "resumo": "Lógica de controle de acesso de usuário configurável com login e senha; cada tipo de operador tem um tipo de manipulação permitida do software",
+        "citacao": "para cada tipo de operador deverá ser possível um determinado tipo de manipulação do software"
+      },
+      "AN_GO_Morrinhos": {
+        "resumo": "Login/senha exclusivo do contratante; múltiplos usuários no mesmo login",
+        "citacao": "login/senha exclusivo do contratante, múltiplos usuários no mesmo login"
+      },
+      "AN_MG_Alfenas": {
+        "resumo": "Programação de grupos de usuários e níveis de acesso operacionais (Administrador / Manutenção / Operador)",
+        "citacao": "O Software da Central deverá permitir programação de grupos de usuários e níveis de acessos operacionais, por exemplo: Administrador, Manutenção e Operador"
+      },
+      "AN_MS_Dourados": {
+        "resumo": "Central OTTO multiusuário; programação de grupos de usuários e níveis de acesso operacionais (Administrador / Manutenção / Operador); cadastro/edição de usuário, senha e nível de acesso (Cadastro básico só monitora / Itens de segurança)",
+        "citacao": "O Software da Central permite a programação de grupos de usuários e níveis de acessos operacionais, por exemplo: Administrador, Manutenção e Operador"
+      },
+      "AN_MT_Varzea-Grande": {
+        "resumo": "Controle de autenticação e acesso por perfil",
+        "citacao": "controle de autenticação e acesso por perfil"
+      },
+      "AN_PA_Abaetetuba": {
+        "resumo": "2 níveis de acesso (Administrador / Usuário Comum), por senha",
+        "citacao": "2 níveis de acesso (Administrador / Usuário Comum), por senha"
+      },
+      "AN_PA_Santarem": {
+        "resumo": "Login/senha exclusivo; mínimo 3 usuários e 2 perfis (Administrador = controle total / Operador = só monitoramento, sem alterar programação)",
+        "citacao": "no mínimo 3 usuários e 2 perfis (Administrador = controle total; Operador = só monitoramento, sem alterar programação)"
+      },
+      "AN_PE_Escada": {
+        "resumo": "Acesso de usuários por senhas de liberação com níveis de acesso distintos; acesso multiusuário simultâneo via computador / tablet / smartphone",
+        "citacao": "Acesso aos usuários através de senhas de liberação com níveis de acesso distintos, visando garantir a confiabilidade do mesmo"
+      },
+      "AN_PE_Serra-Talhada": {
+        "resumo": "Acesso protegido para multiusuários via navegador (Windows, Linux, Android, iOS); definição de níveis hierárquicos de operação",
+        "citacao": "Deverá possuir acesso protegido para multiusuários através de navegadores web para sistemas operacionais Windows, Linux, Android e iOS; Definição de níveis hierárquicos de operação"
+      },
+      "AN_PR_Londrina": {
+        "resumo": "Níveis de acesso por perfil (Administrador / Manutenção / Operador)",
+        "citacao": null
+      },
+      "AN_PR_Paranagua": {
+        "resumo": "Módulo nativo de usuários/perfis",
+        "citacao": null
+      },
+      "AN_RJ_Duque-de-Caxias": {
+        "resumo": "Acesso ao sistema via Web com senhas de liberação e níveis de acesso distintos (item verificado na prova de conceito)",
+        "citacao": "O sistema permite acesso aos usuários através de senhas de liberação com níveis de acesso distintos"
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Gestão de usuários/perfis: módulo existente que qualquer solução nova precisa preservar",
+        "citacao": null
+      },
+      "AN_SC_Criciuma": {
+        "resumo": "Multiusuário simultâneo, login individual; perfis distintos (administrador, manutenção, operação, engenharia, imprensa)",
+        "citacao": "perfis distintos (administrador, manutenção, operação, engenharia, imprensa)"
+      },
+      "AN_SP_Cubatao": {
+        "resumo": "Hierarquia e controle de acesso: níveis de acesso às ações de controle (Operador, Visualização); inicialização por senha conforme o nível de intervenção autorizado",
+        "citacao": "Deverão existir níveis de acesso às ações de controle do Operador, Visualização"
+      },
+      "AN_SP_Louveira": {
+        "resumo": "Banco de dados editável pelo usuário conforme \"nível de acesso hierárquico\"; associação entre interseções e Área/Subárea/Rota configurável só por usuário com permissão",
+        "citacao": "O banco de dados deverá ser editáveis pelo usuário conforme seu nível de acesso hierárquico, a fim de permitir a inclusão, exclusão e modificação dos seus registros"
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Rígido sistema de controle de acesso por grupos de usuários; telas de usuário personalizáveis por operação",
+        "citacao": "ser dotado de um rígido sistema de controle de acesso por grupos de usuários"
+      },
+      "AN_SP_Santo-Andre": {
+        "resumo": "Perfis de usuário (Administrador / Manutenção / Operador) com granularidade por função (cadastro básico, itens de segurança, programação)",
+        "citacao": "O Software da Central deverá permitir programação de grupos de usuários e níveis de acessos operacionais, por exemplo: Administrador, Manutenção e Operador"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Mostrar status por cruzamento no mapa",
+    "temaSlug": "modulo/mapa-status",
+    "total": 17,
+    "nivel": "essencial",
+    "editalSlugs": [
+      "AN_GO_Morrinhos",
+      "AN_PA_Santarem",
+      "AN_MT_Varzea-Grande",
+      "AN_SC_Jaragua-do-Sul",
+      "AN_CE_Fortaleza",
+      "AN_PR_Paranagua",
+      "AN_RJ_Duque-de-Caxias",
+      "AN_RS_Farroupilha",
+      "AN_SC_Criciuma",
+      "AN_SP_Ribeirao-Preto",
+      "AN_SP_Santo-Andre",
+      "AN_MG_Alfenas",
+      "AN_PE_Escada",
+      "AN_MT_Cuiaba",
+      "AN_SP_Ribeirao-Preto-2022",
+      "AN_ES_Cachoeiro-de-Itapemirim",
+      "AN_SP_Louveira"
+    ],
+    "detalhes": {
+      "AN_GO_Morrinhos": {
+        "resumo": "Mapa digital do município com ícones interativos por cruzamento",
+        "citacao": "mapa digital do município com ícones interativos por cruzamento"
+      },
+      "AN_PA_Santarem": {
+        "resumo": "Mapa digital com ícone de status por cor por cruzamento (verde = ok, vermelho = parado, amarelo = com intercorrência)",
+        "citacao": "Mapa digital com ícone de status por cor (verde = ok, vermelho = parado, amarelo = com intercorrência) para cada cruzamento"
+      },
+      "AN_MT_Varzea-Grande": {
+        "resumo": "Mapa digital interativo em tempo real com status de todas as unidades semafóricas",
+        "citacao": "mapa digital interativo em tempo real (status de todas as unidades semafóricas)"
+      },
+      "AN_SC_Jaragua-do-Sul": {
+        "resumo": "Visualização em tempo real do estado dos grupos de tráfego de cada cruzamento, por cor (vermelho / verde / amarelo / piscante)",
+        "citacao": "Visualizar em tempo real o funcionamento dos controladores da rede"
+      },
+      "AN_CE_Fortaleza": {
+        "resumo": "Mapa geográfico com ícones por dispositivo/área, na interface web do UTC (PEEK TMS baseado em nuvem)",
+        "citacao": null
+      },
+      "AN_PR_Paranagua": {
+        "resumo": "Módulo nativo de gestão de mapas (sistema HTML5 multiprotocolo)",
+        "citacao": null
+      },
+      "AN_RJ_Duque-de-Caxias": {
+        "resumo": "Interface gráfica com mapa e janelas; código de cores por nível de fluidez (Fluido / Lento / Pesado / Congestionado)",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Módulo de mapas nativo do EcoTrafiX (módulo existente que qualquer solução nova precisa preservar)",
+        "citacao": null
+      },
+      "AN_SC_Criciuma": {
+        "resumo": "Mapa com status por ponto",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto": {
+        "resumo": "Mapa de subáreas/cruzamentos com status de LEDs em tempo real e alarmes de falha (lâmpada queimada, porta do gabinete aberta)",
+        "citacao": null
+      },
+      "AN_SP_Santo-Andre": {
+        "resumo": "Módulo Central GS: mapa com status por cor (offline / online / online com falha grave / não grave)",
+        "citacao": null
+      },
+      "AN_MG_Alfenas": {
+        "resumo": "Central de Trânsito GS: mapa com status por cor (offline / online / online com falha grave / não grave)",
+        "citacao": null
+      },
+      "AN_MT_Cuiaba": {
+        "resumo": "Mapa digital do perímetro urbano com marcadores de 100% dos cruzamentos e status de operação em tempo real; detalhe por cruzamento ao clicar no marcador; acesso web/mobile",
+        "citacao": "A apresentação de status de operação de cada unidade em mapa digital do perímetro urbano permite eficiência nas ações de manutenção"
+      },
+      "AN_ES_Cachoeiro-de-Itapemirim": {
+        "resumo": "Mapa digital do município com todos os conjuntos semafóricos representados por ícones interativos; ícone varia por status (verde/vermelho/amarelo); contagem de equipamentos integrados/com falha/desligados",
+        "citacao": "Mapa digital do município com todos os conjuntos semafóricos representados por ícones interativos"
+      },
+      "AN_SP_Louveira": {
+        "resumo": "Mapa com ícones por estado (Normal / Falha / Falha de comunicação / Porta aberta / Manutenção), navegação com zoom, filtro por Área/Subárea/Rota e por código/modelo do equipamento, quadro de estatísticas por estado",
+        "citacao": "Deverá exibir os marcadores de acordo com o estado de funcionamento dos equipamentos [...] Normal; Falha [...] Falha de comunicação; Porta Aberta; Manutenção"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Gerar relatório de funcionamento e falhas",
+    "temaSlug": "modulo/relatorios-log",
+    "total": 15,
+    "nivel": "essencial",
+    "editalSlugs": [
+      "AN_GO_Morrinhos",
+      "AN_PA_Santarem",
+      "AN_PE_Serra-Talhada",
+      "AN_PR_Fazenda-Rio-Grande",
+      "AN_BA_Detran-Salvador",
+      "AN_CE_Fortaleza",
+      "AN_ES_Vitoria",
+      "AN_MT_Cuiaba",
+      "AN_PR_Londrina",
+      "AN_RJ_Duque-de-Caxias",
+      "AN_SP_Indaiatuba",
+      "AN_MS_Dourados",
+      "AN_ES_Cachoeiro-de-Itapemirim",
+      "AN_SP_Louveira",
+      "AN_SP_Jaboticabal-PE7"
+    ],
+    "detalhes": {
+      "AN_GO_Morrinhos": {
+        "resumo": "Relatórios de funcionamento e de falha por cruzamento, com data",
+        "citacao": "relatórios de funcionamento e de falha (por cruzamento, com data)"
+      },
+      "AN_PA_Santarem": {
+        "resumo": "Relatórios de funcionamento, de falhas (com timestamp) e em tempo real; contagem agregada de equipamentos online / com falha / desligados",
+        "citacao": "Relatórios de funcionamento, de falhas (com timestamp) e em tempo real"
+      },
+      "AN_PE_Serra-Talhada": {
+        "resumo": "Geração de relatórios de todas as operações do sistema; proteção contra dados inconsistentes (barra plano com verdes conflitantes)",
+        "citacao": "O software de Gerenciamento de Tráfego (Central) [...] deve possuir a geração de relatórios de todas as operações do sistema"
+      },
+      "AN_PR_Fazenda-Rio-Grande": {
+        "resumo": "Monitoração constante dos controladores com alarme sonoro e mensagem na tela de qualquer defeito/mudança de status; tratamento de dados de detectores (taxa de ocupação e contagem de veículos)",
+        "citacao": "Permitir a monitoração constante dos controladores ligados à rede, informando qualquer defeito ou mudança do status destes automaticamente, através de sinal audível e mensagem na tela do terminal"
+      },
+      "AN_BA_Detran-Salvador": {
+        "resumo": "Relatórios em PDF/CSV; medição de tempo de percurso e de filas; cadastro de incidentes (itens da Prova de Amostra)",
+        "citacao": null
+      },
+      "AN_CE_Fortaleza": {
+        "resumo": "Filtro e exportação de histórico de falhas de equipamento",
+        "citacao": null
+      },
+      "AN_ES_Vitoria": {
+        "resumo": "Operador registra toda a operação num sistema interno chamado CRO (Controle de Registro de Operação)",
+        "citacao": null
+      },
+      "AN_MT_Cuiaba": {
+        "resumo": "Gerenciamento via relatórios; visualização de ocorrências",
+        "citacao": "Gerenciamento dos estados dos controladores através de relatórios"
+      },
+      "AN_PR_Londrina": {
+        "resumo": "Histórico de ocorrências; registro de programação de horários especiais (feriados, obras, eventos)",
+        "citacao": null
+      },
+      "AN_RJ_Duque-de-Caxias": {
+        "resumo": "Base de dados relacional para consulta numérica e gráfica; detecção e registro de alarmes",
+        "citacao": null
+      },
+      "AN_SP_Indaiatuba": {
+        "resumo": "Indicadores de disponibilidade de controlador: MTBF (tempo médio entre falhas) e MTTR (tempo médio de reparo), por equipamento e agregado",
+        "citacao": "Deverá apresentar indicadores para medir a disponibilidade e a confiabilidade dos equipamentos [...] Tempo Médio Entre Falhas (MTBF) e Tempo Médio para Reparo (MTTR) calculado individualmente por equipamento e de forma global"
+      },
+      "AN_MS_Dourados": {
+        "resumo": "Relatórios do fluxo de passagem e informações relevantes para reprogramação dos planos de trabalho do controlador",
+        "citacao": "Permite relação de relatórios do fluxo de passagem e informações relevantes para reprogramação dos planos de trabalho do controlador"
+      },
+      "AN_ES_Cachoeiro-de-Itapemirim": {
+        "resumo": "Relatórios de funcionamento, de falhas (com cruzamento, hora/minuto/segundo, data), tempo real do funcionamento atual; \"indicadores inteligentes periódicos\" de falha por natureza",
+        "citacao": null
+      },
+      "AN_SP_Louveira": {
+        "resumo": "Leitura remota do estado corrente do controlador (plano, modo, estágio, troca horária, tempo de ciclo); upload/consulta/alteração de planos e tabela horária; comando remoto de reinício com confirmação",
+        "citacao": "A CENTRAL SEMAFÓRICA deverá apresentar os planos de tráfego residentes no controlador bem como sua Tabela Horária de Mudança de Planos (upload) para efeito de consulta e alteração"
+      },
+      "AN_SP_Jaboticabal-PE7": {
+        "resumo": "Monitoramento via SNMP de falta de energia, subtensão, amarelo intermitente, desligado/apagado, estacionado e porta aberta, transmitido à Central Semafórica; reset remoto do controlador",
+        "citacao": "Transmitir o \"status\" de Nobreak, utilizando protocolo SNMP para a Central Semafórica"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Suportar protocolo aberto UTMC/UTMC2",
+    "temaSlug": "protocolo/utmc",
+    "total": 13,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_CE_Fortaleza",
+      "AN_PB_Joao-Pessoa",
+      "AN_PR_Corbelia",
+      "AN_PR_Londrina",
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha",
+      "AN_SP_Cubatao",
+      "AN_SP_Detran",
+      "AN_SP_Indaiatuba",
+      "AN_SP_Jaboticabal-PE57",
+      "AN_SP_Jaboticabal-PE7",
+      "AN_SP_Pilar-do-Sul",
+      "AN_SP_Sertaozinho"
+    ],
+    "detalhes": {
+      "AN_CE_Fortaleza": {
+        "resumo": "Controladores novos devem suportar no mínimo UTMC e UTMC2, o que viabiliza trocar controladores por equipamentos de múltiplos fabricantes (PEEK, DIGICON ou EcoTrafiX) na mesma rede",
+        "citacao": "assegurando flexibilidade e integração com outros sistemas"
+      },
+      "AN_PB_Joao-Pessoa": {
+        "resumo": "Controlador de tempo real e Central Semafórica Adaptativa em UTMC2 \"ou outro protocolo aberto, com algoritmo de aprendizagem, utilizado por múltiplos fabricantes\" (módulo semafórico piloto do CCC:JP)",
+        "citacao": "Central Semafórica Adaptativa em Tempo Real UTMC2 ou outro protocolo aberto multi-fabricante"
+      },
+      "AN_PR_Corbelia": {
+        "resumo": "Central Semafórica Adaptativa em UTMC padronizado, cobrindo monitoramento, gerenciamento, forçamento de estágios e detecção de fluxo veicular; item de planilha (\"Licença de Central Semafórica Adaptativa\" + \"UTMC2 padrão CET-SP\")",
+        "citacao": "Os semáforos em conjunto com o UTMC [...] deverão operar em protocolos aberto UTMC padronizado"
+      },
+      "AN_PR_Paranagua": {
+        "resumo": "Sistema de gestão multiprotocolo: além do UNE 135401-4 pleno, capacidade de integrar NTCIP 1201/1202 e UTMC",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Módulo de tráfego do EcoTrafiX fala UNE 135401-4 com os controladores atuais e tem capacidade de integrar NTCIP 1201/1202 e UTMC",
+        "citacao": null
+      },
+      "AN_SP_Cubatao": {
+        "resumo": "Protocolo controlador↔central UTMC2 pleno, com referência normativa citada (UTMC TS003_003:2009, The UTMC Framework Technical Specification)",
+        "citacao": null
+      },
+      "AN_SP_Detran": {
+        "resumo": "Comunicação com a central em UTMC2, NTCIP ou proprietário; o proprietário só é aceito com \"abertura de software\" para virar protocolo aberto; conexão física Ethernet 10/100 RJ-45 dedicada ao perfil UTMC/NTCIP",
+        "citacao": null
+      },
+      "AN_SP_Jaboticabal-PE57": {
+        "resumo": "Módulo de Monitoramento em UTMC-2 com os controladores fornecidos e os já existentes \"independente da marca, modelo e/ou fabricante\"; FTP, UTMC-2 e SNMP num único canal",
+        "citacao": "independente da marca, modelo e/ou fabricante"
+      },
+      "AN_SP_Jaboticabal-PE7": {
+        "resumo": "Módulo de Monitoramento GPRS/3G com protocolo UTMC-2 para dados de monitoramento; FTP, UTMC-2 e SNMP num único canal; opera com controladores de qualquer marca/modelo/fabricante",
+        "citacao": "Deverá ser utilizado o protocolo UTMC-2 para efetuar a comunicação dos dados de monitoramento [...] independente da marca, modelo e/ou fabricante"
+      },
+      "AN_SP_Pilar-do-Sul": {
+        "resumo": "Integração de controlador semafórico tempo real à sistema de Central Semafórica adaptativa em tempo real com protocolo UTMC2, exigida como qualificação técnica (atestado) e como item de planilha (licença)",
+        "citacao": "Integração de controlador semafórico tempo real à sistema de Central Semafórica adaptativa em tempo real com protocolo de comunicação UTMC2"
+      },
+      "AN_SP_Sertaozinho": {
+        "resumo": "Semáforos e central devem operar em protocolo aberto UTMC padronizado: monitoramento, gerenciamento, forçamento de estágios pelo sistema, detecção de fluxo veicular",
+        "citacao": "deverão operar em protocolo aberto UTMC padronizado, permitindo: monitoramento; gerenciamento; forçamento de estágios pelo sistema; detecção de fluxo veicular"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Notificar falha por WhatsApp/Telegram",
+    "temaSlug": "modulo/notificacao-mensageria",
+    "total": 8,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_SP_Sao-Bernardo-do-Campo",
+      "AN_ES_Cachoeiro-de-Itapemirim",
+      "AN_MG_Alfenas",
+      "AN_MS_Dourados",
+      "AN_PA_Santarem",
+      "AN_PR_Londrina",
+      "AN_SC_Criciuma",
+      "AN_SP_Santo-Andre"
+    ],
+    "detalhes": {
+      "AN_SP_Sao-Bernardo-do-Campo": {
+        "resumo": "Alerta de falha via WhatsApp/Telegram a número ilimitado de smartphones, incluindo munícipes",
+        "citacao": "enviar mensagens de texto através de aplicativo multiplataforma de mensagens instantâneas (Telegram, WhatsApp, etc)"
+      },
+      "AN_ES_Cachoeiro-de-Itapemirim": {
+        "resumo": "Aviso e notificação via SMS ou WhatsApp de quaisquer falhas ao celular cadastrado",
+        "citacao": "Aviso e notificação via SMS ou Whats App de quaisquer falhas ou avisos no celular cadastrado"
+      },
+      "AN_MG_Alfenas": {
+        "resumo": "Mesmo texto de Santo André (template \"OTTO\"): mensagem via Telegram/WhatsApp a número ilimitado de smartphones, incluindo munícipes",
+        "citacao": "Enviar mensagens de texto através de aplicativo multiplataforma de mensagens instantâneas (Telegram, WhatsApp, etc) para ilimitado número de smartphones adicionado no grupo [...] inclusive os munícipes, de acordo com as regras da secretaria"
+      },
+      "AN_MS_Dourados": {
+        "resumo": "Central OTTO envia notificação de falha via Telegram/WhatsApp para número ilimitado de contatos (técnicos de plantão, secretário, até munícipes conforme regra da secretaria)",
+        "citacao": null
+      },
+      "AN_PA_Santarem": {
+        "resumo": "Notificação de falha via SMS ou WhatsApp",
+        "citacao": null
+      },
+      "AN_PR_Londrina": {
+        "resumo": "Central envia mensagens de falha de controlador direto para grupo de smartphones (técnicos, diretor/secretário, munícipe) via WhatsApp/Telegram",
+        "citacao": null
+      },
+      "AN_SC_Criciuma": {
+        "resumo": "Notificação de falha por SMS e/ou apps de mensagem (Telegram, WhatsApp), com severidade configurável pelo administrador",
+        "citacao": null
+      },
+      "AN_SP_Santo-Andre": {
+        "resumo": "Mensagem de texto via app de mensageria (Telegram/WhatsApp) para número ilimitado de smartphones do grupo; inclui técnicos de plantão, diretor/secretário de trânsito e munícipes",
+        "citacao": "Enviar mensagens de texto através de aplicativo multíplataforma de mensagens instantâneas (Teiegram, WhatsApp, etc.) para ilimitado número de smartphones adicionado no grupo. Desta forma os técnicos de plantão, diretor/secretário de trânsito, inclusive os munícipes [...] recebem as informações de falhas dos controladores centralizados"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Integrar câmeras de monitoramento (CFTV)",
+    "temaSlug": "modulo/cftv",
+    "total": 8,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_PB_Joao-Pessoa",
+      "AN_PR_Corbelia",
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha",
+      "AN_SC_Joinville",
+      "AN_SP_Igarapava-PE13",
+      "AN_SP_Pilar-do-Sul",
+      "AN_SP_Ribeirao-Preto-2022"
+    ],
+    "detalhes": {
+      "AN_PB_Joao-Pessoa": {
+        "resumo": "Câmeras de videodetecção (saturação, retenção, visão 180°) no módulo semafórico piloto do Centro de Cooperação da Cidade",
+        "citacao": null
+      },
+      "AN_PR_Corbelia": {
+        "resumo": "Kit de instalação de câmera IP integrado à central, com switch PoE, cabeamento Cat6 blindado externo e caixa de passagem dedicada",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Módulo de CFTV existente (PTZ, mosaico, presets) que a solução nova precisa preservar",
+        "citacao": null
+      },
+      "AN_SC_Joinville": {
+        "resumo": "Câmeras de videodetecção (até 4 laços virtuais por câmera, lógica E/OU), 4MP H.264/H.265, PoE, WDR ≥120 dB, com software de configuração por zona",
+        "citacao": null
+      },
+      "AN_SP_Igarapava-PE13": {
+        "resumo": "Câmera de vídeo detecção como maior item do orçamento (23 unidades), vendida junto com controlador+central, sem especificação funcional própria além do item de compra",
+        "citacao": null
+      },
+      "AN_SP_Pilar-do-Sul": {
+        "resumo": "Câmera IP com LPR (leitura de placa) + servidor LPR dedicado; sistema de visão computacional com licença mensal de gestão de vídeo/alarmes e serviço de operação (VMS)",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Integrar dados de trânsito do Waze/Google Maps",
+    "temaSlug": "modulo/integracao-waze",
+    "total": 6,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_SP_Sao-Bernardo-do-Campo",
+      "AN_MG_Alfenas",
+      "AN_RS_Farroupilha",
+      "AN_SC_Criciuma",
+      "AN_SP_Indaiatuba",
+      "AN_SP_Santo-Andre"
+    ],
+    "detalhes": {
+      "AN_RS_Farroupilha": {
+        "resumo": "Integração bidirecional com Waze: recebe alertas de usuários no mapa da central e publica eventos (obras, interdições) de volta; algumas funções dependem de acordo comercial com Waze/Google",
+        "citacao": null
+      },
+      "AN_SC_Criciuma": {
+        "resumo": "Mapa de fundo com Google Maps e Waze, com trânsito em tempo real sobreposto aos pontos semafóricos cadastrados",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Gerenciar operação e manutenção (OS, chamados)",
+    "temaSlug": "modulo/gestao-falhas-om",
+    "total": 6,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_BA_Jequie",
+      "AN_PE_Escada",
+      "AN_SC_Joinville",
+      "AN_SP_Hortolandia",
+      "AN_SP_Ribeirao-Preto-2022",
+      "AN_SP_Santana-de-Parnaiba"
+    ],
+    "detalhes": {
+      "AN_BA_Jequie": {
+        "resumo": "Central de controle de tráfego como item de planilha único que já embute \"manutenção de falhas semafóricas, gerenciamento de patrimônio e inventário de ativos, gestão de serviços semaforizados\"",
+        "citacao": "Central de controle de tráfego, manutenção de falhas semafóricas, gerenciamento de patrimônio e inventário de ativos, gestão de serviços semaforizados"
+      },
+      "AN_PE_Escada": {
+        "resumo": "Sistema de Gestão para Operação e Manutenção separado do controle de tráfego: cadastro de equipamentos/placas, ordens de serviço, registro de ocorrências e reclamações de usuários, histórico de defeitos, mapa das viaturas de manutenção via GPS",
+        "citacao": null
+      },
+      "AN_SC_Joinville": {
+        "resumo": "Sistema de gestão on-line pra chamados/ordens de serviço: rastreia chamados recebidos/atendidos (no prazo ou não), vistorias com data/hora/local, materiais substituídos com fotos antes/depois, atualização diária obrigatória. Cláusula de handover técnico de infraestrutura (SO/SGBD) ao fim do contrato",
+        "citacao": null
+      },
+      "AN_SP_Hortolandia": {
+        "resumo": "Programa de gestão e monitoramento de ocorrências de falhas bidirecional CONTRATADA↔CONTRATANTE: ordem de serviço, tipo de falha, materiais usados, cronometragem automática de atendimento",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Plataforma de Integração do CCO com módulo de gestão de falhas separado do controle de tráfego, base única com os demais sistemas (CFTV, PMV)",
+        "citacao": null
+      },
+      "AN_SP_Santana-de-Parnaiba": {
+        "resumo": "Software de gestão de falhas fornecido pela contratada, banco de dados informatizado, relatórios históricos/gerenciais; cada ocorrência com hora de acionamento/chegada/término, materiais e peças usadas",
+        "citacao": "Software de gestão de falhas fornecido pela contratada, com banco de dados informatizado e relatórios"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Mostrar status por controlador no mapa",
+    "temaSlug": "modulo/mapa-status",
+    "total": 6,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_PE_Serra-Talhada",
+      "AN_SP_Sao-Joao-da-Boa-Vista",
+      "AN_PA_Abaetetuba",
+      "AN_PR_Londrina",
+      "AN_SP_Cubatao",
+      "AN_PR_Fazenda-Rio-Grande"
+    ],
+    "detalhes": {
+      "AN_SP_Sao-Joao-da-Boa-Vista": {
+        "resumo": "Status on-line por controlador no sistema web da central (informa as falhas de cada controlador)",
+        "citacao": "verificar o status de funcionamento de cada controlador informando \"on line\" as falhas apresentadas"
+      },
+      "AN_PA_Abaetetuba": {
+        "resumo": "Mapa de localização dos controladores com estado por cor (verde = ok, vermelho = erro novo, amarelo = desconectado da central), em sincronia com a tabela de controle",
+        "citacao": "Estado atual do controlador: [...] Verde, sistema operante; Vermelho, sistema com novo erro diagnosticado; Amarela, sistema desconectado da central"
+      },
+      "AN_PR_Londrina": {
+        "resumo": "Mapa com status dos controladores (online / offline / com falha) por cor",
+        "citacao": null
+      },
+      "AN_SP_Cubatao": {
+        "resumo": "Mapa com marcadores por estado de funcionamento dos controladores; central sinaliza automaticamente quando um semáforo para de comunicar, sem o operador atualizar",
+        "citacao": "Deverá exibir os marcadores de acordo com o estado de funcionamento dos [controladores]"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Registrar trilha de auditoria de operador",
+    "temaSlug": "modulo/relatorios-log/auditoria",
+    "total": 5,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_PA_Abaetetuba",
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha",
+      "AN_SC_Criciuma",
+      "AN_SP_Ribeirao-Preto-2022"
+    ],
+    "detalhes": {
+      "AN_PA_Abaetetuba": {
+        "resumo": "Histórico de diagnósticos (exportável para impressão) + histórico de modificações: o quê, por quem, quando",
+        "citacao": "histórico de modificações (o quê, por quem, quando)"
+      },
+      "AN_PR_Paranagua": {
+        "resumo": "Módulos nativos de relatórios e de auditoria; Scorecards em tempo real (OLAP); fusão de dados de tráfego + histórico",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Módulos de relatórios e de auditoria existentes; retenção de histórico com buffer local mesmo sem link de comunicação",
+        "citacao": null
+      },
+      "AN_SC_Criciuma": {
+        "resumo": "Gráficos de estatística; contagem veicular processada; log de ações por usuário",
+        "citacao": "Possibilitar a geração de gráfico de estatísticas para visualização do estado atual dos controladores cadastrados"
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Todas as operações do operador registradas com data e hora, gerando log de auditoria; falha de equipamento gera arquivo de log transmitido ao CCO",
+        "citacao": "Todas as operações realizadas pelo operador deverão ser registradas com data e hora, gerando um log de auditoria"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Integrar painel de mensagem variável (PMV)",
+    "temaSlug": "modulo/painel-mensagem-variavel",
+    "total": 5,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_SP_Sao-Bernardo-do-Campo",
+      "AN_ES_Vitoria",
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha",
+      "AN_SP_Ribeirao-Preto-2022"
+    ],
+    "detalhes": {
+      "AN_SP_Sao-Bernardo-do-Campo": {
+        "resumo": "PMV integrado automaticamente à plataforma de dados/analytics, gerando informação de situação de tráfego por região/rota/via, não só pela central de tráfego tradicional",
+        "citacao": "de forma automática, permitir a integração com painéis de mensagens variáveis gerando as informações da situação do tráfego [...] por região, rotas, ruas ou avenidas"
+      },
+      "AN_ES_Vitoria": {
+        "resumo": "Painel de mensagem variável integrado à central, junto com controladores e câmeras de laço virtual",
+        "citacao": null
+      },
+      "AN_PR_Paranagua": {
+        "resumo": "PMV em NTCIP 1203, com suporte adicional ao protocolo DGT e possibilidade de extensão a protocolos proprietários",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Painéis de mensagem variável (inclusive móvel) como módulo existente que a solução nova precisa preservar",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Sistema de Informação ao Usuário (PMV) como módulo próprio, hospedado na mesma base única do CCO",
+        "citacao": "todos estes sistemas deverão trabalhar numa base única, não podendo ser separados"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Oferecer central 100% web sem instalação local",
+    "temaSlug": "modulo/central-web-saas",
+    "total": 5,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_GO_Morrinhos",
+      "AN_MT_Varzea-Grande",
+      "AN_PA_Santarem",
+      "AN_PE_Serra-Talhada",
+      "AN_SP_Sao-Joao-da-Boa-Vista"
+    ],
+    "detalhes": {
+      "AN_GO_Morrinhos": {
+        "resumo": "Central de Monitoramento de Tráfego em Tempo Real via Web, preferência explícita por aplicação em nuvem (\"baixo custo de implantação\"), compatível com navegadores principais",
+        "citacao": "Central de Monitoramento de Tráfego em Tempo Real Via Web"
+      },
+      "AN_MT_Varzea-Grande": {
+        "resumo": "Sistema disponível via app mobile (iOS/Android) ou web, pra equipe de fiscalização/secretaria monitorar a rede semafórica de fora do CCO",
+        "citacao": "solução mobile (iOS e Android) ou web pra visualização em tempo real"
+      },
+      "AN_PA_Santarem": {
+        "resumo": "Cláusula anti-instalação explícita: \"não serão aceitas centrais via software\" que exija instalação local, só 100% web (Chrome/Edge/Safari); modelo de assinatura mensal, acesso suspenso se não renovar",
+        "citacao": "Não serão aceitas centrais que sejam operadas através de SOFTWARE ou Plataformas que necessitem de instalação"
+      },
+      "AN_PE_Serra-Talhada": {
+        "resumo": "Software de Gerenciamento de Tráfego (Central) com acesso multiusuário via navegador, granularidade rara de SO suportado (Windows, Linux, Android, iOS)",
+        "citacao": "acesso multiusuário via navegador web (Windows, Linux, Android, iOS)"
+      },
+      "AN_SP_Sao-Joao-da-Boa-Vista": {
+        "resumo": "Sistema Web da Central de Controle de Semáforos acessível via computador, notebook, mobile ou dispositivo similar (acesso multiplataforma explicitado)",
+        "citacao": "ligado em rede remota via Computador (CPU), notebook, mobile ou dispositivo similar"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Suportar protocolo aberto NTCIP",
+    "temaSlug": "protocolo/ntcip",
+    "total": 5,
+    "nivel": "frequente",
+    "editalSlugs": [
+      "AN_MT_Cuiaba",
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha",
+      "AN_SP_Detran",
+      "AN_SP_Ribeirao-Preto-2022"
+    ],
+    "detalhes": {
+      "AN_MT_Cuiaba": {
+        "resumo": "Software incumbente Spinnaker/EMTRAC 100% compatível com NTCIP (norma aberta reconhecida pela ANTT); a contratada pode usar aplicação própria desde que integre via NTCIP com o que já está implantado",
+        "citacao": null
+      },
+      "AN_PR_Paranagua": {
+        "resumo": "PMV em NTCIP 1203; sistema de gestão com capacidade de integrar NTCIP 1201/1202",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Arquitetura multiprotocolo do EcoTrafiX com capacidade de integrar NTCIP 1201/1202",
+        "citacao": null
+      },
+      "AN_SP_Detran": {
+        "resumo": "Central de Monitoramento em Tempo Real em UTMC2 ou NTCIP; conexão física Ethernet dedicada ao perfil UTMC/NTCIP",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "NTCIP citado como exemplo de protocolo aberto para \"garantir compatibilidade com hardwares, softwares, dispositivos e periféricos\" e escalar sem trocar a base de gestão",
+        "citacao": "garantir compatibilidade com hardwares, softwares, dispositivos e periféricos"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Oferecer analytics com IA/LLM sobre dados de tráfego",
+    "temaSlug": "modulo/plataforma-dados-ia",
+    "total": 4,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_SP_Sao-Bernardo-do-Campo",
+      "AN_MG_Alfenas",
+      "AN_SP_Indaiatuba",
+      "AN_SP_Santo-Andre"
+    ],
+    "detalhes": {
+      "AN_SP_Sao-Bernardo-do-Campo": {
+        "resumo": "Plataforma de data mesh corporativo sem servidor, com ML+BI e consulta em linguagem natural sobre o Waze via API REST",
+        "citacao": "plataforma de data mesh corporativo, sem servidor e econômico"
+      },
+      "AN_MG_Alfenas": {
+        "resumo": "Plataforma de dados analíticos com Waze, ML/BI e consulta em linguagem natural via LLM",
+        "citacao": null
+      },
+      "AN_SP_Indaiatuba": {
+        "resumo": "Plataforma de dados analíticos (data mesh serverless em nuvem) com ML/BI integrados e consulta em linguagem natural via LLM; inclui privacidade diferencial e SSO corporativo (SAML/OIDC/OAuth2, MFA)",
+        "citacao": "O banco de dados da solução possui integração nativa com grandes modelos de linguagem (LLMs), de modo a viabilizar a execução de análises avançadas diretamente na base de dados, utilizando Inteligência Artificial com processamento de linguagem natural?"
+      },
+      "AN_SP_Santo-Andre": {
+        "resumo": "Plataforma de dados analíticos com Waze, ML/BI e consulta em linguagem natural via LLM",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Alertar risco de alagamento (módulo pluviométrico)",
+    "temaSlug": "modulo/pluviometrico",
+    "total": 4,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_GO_Mineiros",
+      "AN_MG_Alfenas",
+      "AN_PR_Londrina",
+      "AN_SP_Santo-Andre"
+    ],
+    "detalhes": {
+      "AN_GO_Mineiros": {
+        "resumo": "Módulo pluviométrico completo: sensor de precipitação + nível de água ultrassônico, alarme automático a cada 2 min durante chuva, dados enviados continuamente ao software de controle, com comunicação 2G/3G dedicada independente do controlador",
+        "citacao": null
+      },
+      "AN_MG_Alfenas": {
+        "resumo": "Controlador com capacidade de integração com o Sensor (Módulo) Pluviométrico para geração de índices pluviométricos pra Central de Trânsito",
+        "citacao": "capacidade de integração com o Sensor (Módulo) Pluviométrico para geração de informação de índices pluviométricos para a Central de Trânsito"
+      },
+      "AN_PR_Londrina": {
+        "resumo": "Módulo pluviométrico: sensores de altura de lâmina d'água nas vias, alerta em 4 níveis (verde/amarelo/laranja/vermelho) no mapa da central; depois calcula tempo médio de alagamento/escoamento",
+        "citacao": null
+      },
+      "AN_SP_Santo-Andre": {
+        "resumo": "Mesmo conceito de Londrina (4 níveis de alerta), mais detalhado: guarda dado histórico, calcula tempo médio de alagamento/escoamento/previsão de restabelecimento; contratada entrega o banco histórico completo ao fim do contrato",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Editar mapa-base colaborativamente via Waze",
+    "temaSlug": "modulo/integracao-waze/plataforma-dados",
+    "total": 4,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_SP_Indaiatuba",
+      "AN_SP_Santo-Andre",
+      "AN_MG_Alfenas",
+      "AN_SP_Sao-Bernardo-do-Campo"
+    ],
+    "detalhes": {
+      "AN_SP_Indaiatuba": {
+        "resumo": "Integração via API REST: rastreamento de rotas, congestionamento por período, detecção de anomalia vs. histórico de 90 dias, mapa de calor de buracos em 5 anos, edição colaborativa do mapa-base (POIs, restrições de conversão); exige carta de solidariedade do fabricante do app",
+        "citacao": null
+      },
+      "AN_SP_Santo-Andre": {
+        "resumo": "Integração profunda com Waze: ingestão de dados de navegação em tempo real e histórico, edição colaborativa do mapa-base do município",
+        "citacao": null
+      },
+      "AN_MG_Alfenas": {
+        "resumo": "Integração profunda com Waze: ingestão de dados de navegação, edição colaborativa do mapa-base, análise geoespacial",
+        "citacao": null
+      },
+      "AN_SP_Sao-Bernardo-do-Campo": {
+        "resumo": "Integração via API REST com Waze: tráfego em tempo real (rotas, congestionamento, velocidade média, anomalias), histórico (acidentes, mapa de calor de buracos em 5 anos), edição colaborativa do mapa-base (fechamento de via, sentidos, POIs, geometria, limites de velocidade)",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Detectar veículo por vídeo sem laço físico",
+    "temaSlug": "modulo/laco-virtual",
+    "total": 3,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_ES_Vitoria",
+      "AN_PR_Londrina",
+      "AN_SP_Ribeirao-Preto"
+    ],
+    "detalhes": {
+      "AN_ES_Vitoria": {
+        "resumo": "Câmeras de detecção por laço virtual (kit câmera + módulo de interface + software) integradas à central",
+        "citacao": null
+      },
+      "AN_PR_Londrina": {
+        "resumo": "Detecção \"overhead\": vídeodetecção ou tecnologia equivalente sem sensor no pavimento, com indicação luminosa (LED) de detecção",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto": {
+        "resumo": "Detecção veicular por vídeo (\"overhead\"), sem laço físico no pavimento",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Estruturar sala de operação com vídeo wall",
+    "temaSlug": "modulo/video-wall-coi",
+    "total": 3,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_MT_Cuiaba",
+      "AN_SP_Indaiatuba",
+      "AN_SP_Ribeirao-Preto-2022"
+    ],
+    "detalhes": {
+      "AN_MT_Cuiaba": {
+        "resumo": "CCTI com 2 sistemas de video wall independentes e 2 terminais de operação; rack com servidor de aplicações + servidor de backup dedicados",
+        "citacao": null
+      },
+      "AN_SP_Indaiatuba": {
+        "resumo": "Sala de operação com 6 telas 55\", servidor dedicado de video wall, projeto executivo completo de reforma do espaço",
+        "citacao": "Vídeo Wall / COI físico"
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Vídeo-Wall LED 55\" em configuração 5x4, controlado por \"Gerenciador Gráfico\" capaz de gerenciar múltiplos monitores simultaneamente",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Notificar falha por SMS/e-mail (sem app de mensagem)",
+    "temaSlug": "modulo/notificacao-tradicional",
+    "total": 3,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_PA_Abaetetuba",
+      "AN_SP_Cubatao",
+      "AN_SP_Louveira"
+    ],
+    "detalhes": {
+      "AN_PA_Abaetetuba": {
+        "resumo": "Diagnóstico em tempo real com alerta via e-mail aos endereços cadastrados quando surge erro crítico",
+        "citacao": "Diagnóstico em tempo real com alerta via e-mail: Todos os controladores deverão ser constantemente monitorados e, quando um novo erro crítico for diagnosticado [...] uma mensagem ser enviada para os e-mails cadastrados no sistema"
+      },
+      "AN_SP_Cubatao": {
+        "resumo": "Notificação automática de falha via SMS e/ou e-mail pré-cadastrados, refletida no mapa sem necessidade de o operador atualizar manualmente",
+        "citacao": "Notificação automática de falha via SMS e/ou e-mail pré-cadastrados"
+      },
+      "AN_SP_Louveira": {
+        "resumo": "Ao detectar falha ou perda de comunicação, a central envia aviso automático para e-mails pré-cadastrados, sem exigir nova consulta do usuário",
+        "citacao": "informação para e-mail pré-cadastrados na CENTRAL SEMAFÓRICA, que deverá mostrar no mapa automaticamente sem novas requisições do usuário"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Suportar protocolo aberto UNE 135401-4",
+    "temaSlug": "protocolo/une-135401-4",
+    "total": 3,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha",
+      "AN_SP_Ribeirao-Preto"
+    ],
+    "detalhes": {
+      "AN_PR_Paranagua": {
+        "resumo": "Protocolo controlador↔central UNE 135401-4 pleno; edital ainda reforça em cláusula própria que \"o controlador deverá ter protocolo aberto e público\"",
+        "citacao": "o controlador deverá ter protocolo aberto e público"
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Sistema incumbente EcoTrafiX (Kapsch) fala UNE 135401-4 (AENOR) com os controladores atuais; controlador novo de 8 grupos expansível a 16 com protocolo UNE-AENOR",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto": {
+        "resumo": "UNE 135401-4 exigido para os controladores semafóricos, com objetivo textual de sistema aberto",
+        "citacao": "sistema aberto e flexível... que continua a funcionar quando componentes do software ou hardware forem substituídos ou atualizados"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Priorizar semáforo pra transporte público (BSP)",
+    "temaSlug": "modulo/prioridade-onibus-bsp",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_CE_Fortaleza",
+      "AN_SP_Ribeirao-Preto"
+    ],
+    "detalhes": {
+      "AN_CE_Fortaleza": {
+        "resumo": "Controlador deve suportar prioridade semafórica para BRT e VLT (trem)",
+        "citacao": null
+      },
+      "AN_SP_Ribeirao-Preto": {
+        "resumo": "BSP com detecção do ônibus por GPS (não sensor de via); o software de centralização decide a priorização (tabela de priorização da CCO); controlador \"Corredor\" já vem apto, \"Adjacente\" recebe depois sem trocar hardware",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Suportar câmera com 3 protocolos abertos simultâneos",
+    "temaSlug": "protocolo/onvif-ntcip-snmp-cftv",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_PR_Paranagua",
+      "AN_SP_Ribeirao-Preto-2022"
+    ],
+    "detalhes": {
+      "AN_PR_Paranagua": {
+        "resumo": "Câmeras PTZ IP com três protocolos abertos em paralelo: ONVIF, NTCIP e SNMP",
+        "citacao": "Câmeras PTZ IP com ONVIF, NTCIP e SNMP simultâneos"
+      },
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Câmeras PTZ IP zoom óptico 30x, IP65, com três protocolos abertos em paralelo (ONVIF, NTCIP e SNMP)",
+        "citacao": "Câmeras PTZ IP zoom óptico 30x, IP65, com ONVIF, NTCIP e SNMP em paralelo"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Compartilhar plataforma entre múltiplos órgãos (multiagência)",
+    "temaSlug": "modulo/multiagencia",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_PR_Paranagua",
+      "AN_RS_Farroupilha"
+    ],
+    "detalhes": {
+      "AN_PR_Paranagua": {
+        "resumo": "Operação multi-agência como módulo nativo do Sistema de Gestão Integrada de Trânsito (HTML5, multiprotocolo)",
+        "citacao": null
+      },
+      "AN_RS_Farroupilha": {
+        "resumo": "Módulo de Operação Multi-agência: trânsito, guarda municipal e brigada militar operam a mesma plataforma de forma coordenada ou independente",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Gerar alarme automático de falha do controlador",
+    "temaSlug": "modulo/relatorios-log/alarme-falha-controlador",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_RR_Boa-Vista",
+      "AN_SC_Jaragua-do-Sul"
+    ],
+    "detalhes": {
+      "AN_RR_Boa-Vista": {
+        "resumo": "Central recebe e registra as ocorrências de falha dos controladores (lâmpada queimada por cor e fase, verdes conflitantes) transmitidas da memória interna não-volátil",
+        "citacao": "registrando essas ocorrências em sua memória interna não volátil e enviando essas informações a uma central de controle"
+      },
+      "AN_SC_Jaragua-do-Sul": {
+        "resumo": "Módulo de comunicação interroga o controlador e envia alarmes automáticos ao software de centralização; consulta a alarmes gerais / armazenados, lâmpada queimada e grupo avariado",
+        "citacao": "Interroga o controlador de trafego e envia automaticamente alarmes para o software de centralização"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Manter log das últimas falhas do controlador",
+    "temaSlug": "modulo/relatorios-log/log-ultimas-falhas",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_SP_Sao-Joao-da-Boa-Vista",
+      "AN_SP_Detran"
+    ],
+    "detalhes": {
+      "AN_SP_Sao-Joao-da-Boa-Vista": {
+        "resumo": "Log das 30 últimas falhas no controlador, com tipo (falta de energia, verdes conflitantes, falta de foco, tempo máx. de estágio, falha de comunicação/hardware) e data/hora",
+        "citacao": "registrar, pelo menos, as últimas 30 (trinta) falhas ocorridas [...] com a indicação da data (dia/mês/ano) e hora de ocorrência"
+      },
+      "AN_SP_Detran": {
+        "resumo": "Log de falhas no controlador: mínimo 10 últimas com código, data/hora de início e de retorno ao normal; falha em aberto não pode ser apagada da memória",
+        "citacao": "mínimo de 10 últimas falhas com código, data/hora de início e de retorno ao normal — falha em aberto não pode ser apagada da memória"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Alertar divergência de configuração do controlador",
+    "temaSlug": "modulo/relatorios-log/alarme-divergencia-config",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_PE_Serra-Talhada",
+      "AN_PE_Escada"
+    ],
+    "detalhes": {
+      "AN_PE_Serra-Talhada": {
+        "resumo": "Alarme quando a programação real do controlador diverge da armazenada na central (detecção de inconsistência de configuração)",
+        "citacao": "Deverá possuir recurso de monitoramento da programação interna dos controladores, indicando através de alarme e/ou alertas sobre a mudança de programação nos controladores em relação ao armazenado no sistema central"
+      },
+      "AN_PE_Escada": {
+        "resumo": "Alarme quando a programação real do controlador diverge da armazenada na central",
+        "citacao": "Deverá possuir recurso de monitoramento da programação interna dos controladores, indicando através de alarme e/ou alertas sobre a mudança de programação realizada nos controladores, quando comparado ao armazenado no sistema central"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Gerar alarme do sistema de detecção de fluxo",
+    "temaSlug": "modulo/relatorios-log/alarme-deteccao-fluxo",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_SP_Sertaozinho",
+      "AN_PR_Corbelia"
+    ],
+    "detalhes": {
+      "AN_SP_Sertaozinho": {
+        "resumo": "CCO recebe contadores de fluxo e relatórios de alarme das câmeras de detecção",
+        "citacao": null
+      },
+      "AN_PR_Corbelia": {
+        "resumo": "CCO recebe contadores/alarmes do sistema de detecção de fluxo, fornecendo relatórios para planejamento de segurança e sinalização",
+        "citacao": "O sistema de detecção deverá gerar contadores informando e permitindo a visualização pelo CCO [...] fornecendo relatórios para facilitar o planejamento de segurança e sinalização"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Mostrar localização georreferenciada via GPS",
+    "temaSlug": "modulo/mapa-status/localizacao-gps",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_PE_Serra-Talhada",
+      "AN_PE_Escada"
+    ],
+    "detalhes": {
+      "AN_PE_Serra-Talhada": {
+        "resumo": "Localização dos controladores em mapa georreferenciado interativo, com status de funcionamento, intensidade do trânsito e estágio em operação",
+        "citacao": "Localização dos controladores semafóricos em mapa georreferenciado interativo, que permita a visualização do status de funcionamento dos controladores, indicações de intensidade do trânsito e indicações visuais dos estágios em operação"
+      },
+      "AN_PE_Escada": {
+        "resumo": "Mapa georreferenciado das interseções e das viaturas de manutenção via GPS (no sistema de gestão de O&M); mapa iterativo com nível de congestionamento por trecho",
+        "citacao": "cadastro de equipamentos em mapa georeferenciado"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Mostrar mapa sinótico da rede",
+    "temaSlug": "modulo/mapa-status/mapa-sinotico",
+    "total": 2,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_SP_Ribeirao-Preto-2022",
+      "AN_PR_Fazenda-Rio-Grande"
+    ],
+    "detalhes": {
+      "AN_SP_Ribeirao-Preto-2022": {
+        "resumo": "Mapa sinótico clicável: o operador acessa o estado de funcionamento de todos os equipamentos monitorados pelo Software de Centralização; status de conectividade das câmeras por ícones coloridos",
+        "citacao": "Através do mapa sinótico, o operador deverá terá acesso ao estado de funcionamento de todos os equipamentos monitorados pelo Software de Centralização"
+      },
+      "AN_PR_Fazenda-Rio-Grande": {
+        "resumo": "Programar controladores remotamente e visualizar em tempo real o funcionamento da rede; representação gráfica do plano em curso (estágios e ciclos)",
+        "citacao": "Programar os controladores locais a partir do computador central e visualizar em tempo real o funcionamento dos controladores da rede"
+      }
+    }
+  },
+  {
+    "funcionalidade": "Exibir mapa de calor de congestionamento",
+    "temaSlug": "modulo/mapa-status/heatmap",
+    "total": 1,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_BA_Detran-Salvador"
+    ],
+    "detalhes": {
+      "AN_BA_Detran-Salvador": {
+        "resumo": "Mapa georreferenciado com \"mapa de calor\" de congestionamento (item da Prova de Amostra eliminatória)",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Implementar SSO corporativo",
+    "temaSlug": "modulo/controle-acesso/sso-corporativo",
+    "total": 1,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_SP_Indaiatuba"
+    ],
+    "detalhes": {
+      "AN_SP_Indaiatuba": {
+        "resumo": "SSO via SAML 2.0 / OpenID Connect / OAuth 2.0; integração Google / Microsoft / Active Directory / LDAP; MFA por OTP",
+        "citacao": null
+      }
+    }
+  },
+  {
+    "funcionalidade": "Suportar multi-tenant (organizações)",
+    "temaSlug": "modulo/controle-acesso/multi-tenant",
+    "total": 1,
+    "nivel": "raro",
+    "editalSlugs": [
+      "AN_BA_Detran-Salvador"
+    ],
+    "detalhes": {
+      "AN_BA_Detran-Salvador": {
+        "resumo": "Conceito de \"Organização\": usuários e licença agrupados por cliente; um usuário pode pertencer a mais de uma organização e trocar de contexto",
+        "citacao": null
+      }
+    }
+  }
+]

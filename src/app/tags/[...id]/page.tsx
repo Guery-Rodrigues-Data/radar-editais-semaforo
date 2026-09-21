@@ -19,7 +19,7 @@ export default async function TagPage({
     <>
       <SiteHeader />
       <main className="flex-1">
-        <div className="mx-auto max-w-3xl px-6 py-12">
+        <div className="page-container px-6 py-12">
           <p className="text-xs font-semibold text-signal-red">
             {found.category.label}
           </p>

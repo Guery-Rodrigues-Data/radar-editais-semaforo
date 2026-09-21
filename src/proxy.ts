@@ -3,6 +3,12 @@ import type { NextRequest } from "next/server";
 import { AUTH_COOKIE, isValidAuthToken } from "@/lib/auth";
 
 export async function proxy(request: NextRequest) {
+  // Gate de senha só faz sentido no site publicado (Vercel) — rodando local
+  // (`npm run dev`, NODE_ENV=development) não pede senha.
+  if (process.env.NODE_ENV !== "production") {
+    return NextResponse.next();
+  }
+
   const token = request.cookies.get(AUTH_COOKIE)?.value;
   const authorized = await isValidAuthToken(token);
 
